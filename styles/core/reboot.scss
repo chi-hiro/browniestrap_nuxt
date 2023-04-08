@@ -1,0 +1,532 @@
+@use '/styles/core/core' as *;
+
+*:where(:not(iframe, canvas, img, svg, video):not(svg *)) {
+  all: unset;
+  display: revert;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+:root {
+  font-family: $font-base-family;
+  font-size: $font-base-size;
+}
+
+html {
+  line-height: 1.15;
+  -webkit-text-size-adjust: 100%;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+body {
+  margin: 0;
+  line-height: $font-base-line-height;
+  color: $color-body;
+  background-color: $color-body-bg;
+  scroll-behavior: smooth;
+
+  @include darkmode {
+    color: $dark-color-body;
+    background-color: $dark-color-body-bg;
+  }
+
+  &.hide_scrollbar {
+    overflow: hidden !important;
+
+    #app,
+    #__nuxt {
+      overflow: hidden;
+    }
+  }
+}
+
+[tabindex='-1']:focus:not(:focus-visible) {
+  outline: 0 !important;
+}
+
+hr {
+  box-sizing: content-box;
+  height: 0;
+  overflow: visible;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  border: 0;
+  border-top: 1px solid $color-border;
+
+  @include darkmode {
+    border-color: $dark-color-border;
+  }
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  font-family: inherit;
+  font-weight: 700;
+  line-height: 1.5;
+  color: $color-headings;
+  box-decoration-break: clone;
+  @include textKerning;
+
+  @include darkmode {
+    color: $dark-color-headings;
+  }
+}
+
+h1 {
+  font-size: $font-heading-h1-sm;
+}
+h2 {
+  font-size: $font-heading-h2-sm;
+}
+h3 {
+  font-size: $font-heading-h3-sm;
+}
+h4 {
+  font-size: $font-heading-h4-sm;
+}
+h5 {
+  font-size: $font-heading-h5-sm;
+}
+h6 {
+  font-size: $font-heading-h6-sm;
+}
+
+@include breakpointUp {
+  h1 {
+    font-size: $font-heading-h1;
+  }
+  h2 {
+    font-size: $font-heading-h2;
+  }
+  h3 {
+    font-size: $font-heading-h3;
+  }
+  h4 {
+    font-size: $font-heading-h4;
+  }
+  h5 {
+    font-size: $font-heading-h5;
+  }
+  h6 {
+    font-size: $font-heading-h6;
+  }
+}
+
+p {
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+
+abbr[title],
+abbr[data-original-title] {
+  text-decoration: underline;
+  -webkit-text-decoration: underline dotted;
+  text-decoration: underline dotted;
+  cursor: help;
+  border-bottom: 0;
+  -webkit-text-decoration-skip-ink: none;
+  text-decoration-skip-ink: none;
+}
+
+address {
+  margin-bottom: 1rem;
+  font-style: normal;
+  line-height: inherit;
+}
+
+ol,
+ul,
+dl {
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+
+ul,
+ol {
+  padding-left: 1.25rem;
+}
+
+ol ol,
+ul ul,
+ol ul,
+ul ol {
+  margin-bottom: 0;
+}
+
+dt {
+  font-weight: 700;
+}
+
+dd {
+  margin-bottom: 0.5rem;
+  margin-left: 0;
+}
+
+blockquote {
+  overflow: hidden;
+  padding: 1rem 1.5rem 0;
+  margin-bottom: 1rem;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  background-color: $color-muted-bg;
+  @include rounded;
+
+  @include darkmode {
+    background-color: $dark-color-muted-bg;
+  }
+
+  small {
+    display: block;
+    padding: 1rem 1.5rem;
+    margin: 1rem -1.5rem 0;
+    background-color: $color-muted-bg;
+    font-size: 85%;
+    color: $color-muted;
+
+    @include darkmode {
+      background-color: $dark-color-muted-bg;
+      color: $dark-color-muted;
+    }
+
+    &::before {
+      content: '\2014 \00A0';
+    }
+  }
+
+  p {
+    margin-bottom: 0;
+
+    + p {
+      margin-top: 1rem;
+    }
+  }
+
+  a {
+    @include nowrap;
+  }
+}
+
+b,
+strong {
+  font-weight: bolder;
+}
+
+small {
+  display: inline-block;
+  font-size: 0.8125rem;
+  font-weight: normal;
+  line-height: 1.5;
+}
+
+mark {
+  font-weight: bold;
+  color: $color-headings;
+  background: linear-gradient(transparent 70%, #fcff47 0%);
+
+  @include darkmode {
+    background: #fcff47;
+  }
+}
+
+sub,
+sup {
+  position: relative;
+  font-size: 75%;
+  line-height: 0;
+  vertical-align: baseline;
+}
+
+sub {
+  bottom: -0.25em;
+}
+
+sup {
+  top: -0.5em;
+}
+
+a {
+  cursor: pointer;
+  color: $color-link;
+  text-decoration: none;
+  background-color: transparent;
+
+  @include hoverMouse {
+    color: $color-link-hover;
+  }
+
+  &:focus-visible {
+    text-decoration: underline;
+  }
+}
+
+a:not([href]):not([class]) {
+  color: inherit;
+  text-decoration: none;
+
+  &:hover,
+  &:focus {
+    color: inherit;
+    text-decoration: none;
+  }
+}
+
+pre,
+code,
+kbd,
+samp {
+  font-family: Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
+  font-size: 1em;
+}
+
+code {
+  padding: 0 4px;
+  margin: 0 2px;
+  border-radius: 2px;
+  font-size: 0.875rem;
+  color: white;
+  background-color: $color-info;
+}
+
+pre {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  overflow: auto;
+}
+
+figure {
+  margin: 0 0 1rem;
+}
+
+img,
+svg {
+  vertical-align: middle;
+}
+
+table {
+  caption-side: bottom;
+  border-collapse: collapse;
+}
+
+caption {
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+  color: $color-muted;
+  text-align: left;
+
+  @include darkmode {
+    color: $dark-color-muted;
+  }
+}
+
+th {
+  text-align: inherit;
+  text-align: -webkit-match-parent;
+}
+
+label {
+  display: inline-block;
+  margin-bottom: 0.5rem;
+}
+
+button {
+  border-radius: 0;
+
+  &:focus:not(:focus-visible) {
+    outline: 0;
+  }
+}
+
+input,
+button,
+select,
+optgroup,
+textarea {
+  margin: 0;
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+}
+
+a,
+input,
+button,
+select,
+optgroup,
+textarea {
+  &:active,
+  &:hover,
+  &:focus {
+    outline: none;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  }
+}
+
+button,
+input {
+  overflow: visible;
+}
+
+button,
+select {
+  text-transform: none;
+}
+
+[role='button'] {
+  cursor: pointer;
+}
+
+select {
+  word-wrap: normal;
+}
+
+button,
+[type='button'],
+[type='reset'],
+[type='submit'] {
+  appearance: button;
+}
+
+button:not(:disabled),
+[type='button']:not(:disabled),
+[type='reset']:not(:disabled),
+[type='submit']:not(:disabled) {
+  cursor: pointer;
+}
+
+button::-moz-focus-inner,
+[type='button']::-moz-focus-inner,
+[type='reset']::-moz-focus-inner,
+[type='submit']::-moz-focus-inner {
+  padding: 0;
+  border-style: none;
+}
+
+input[type='radio'],
+input[type='checkbox'] {
+  box-sizing: border-box;
+  padding: 0;
+}
+
+textarea {
+  overflow: auto;
+  resize: vertical;
+}
+
+fieldset {
+  min-width: 0;
+  padding: 0;
+  margin: 0;
+  border: 0;
+}
+
+legend {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  padding: 0;
+  margin-bottom: 0.5rem;
+  font-size: 1.5rem;
+  line-height: inherit;
+  color: inherit;
+  white-space: normal;
+}
+
+progress {
+  vertical-align: baseline;
+}
+
+[type='number']::-webkit-inner-spin-button,
+[type='number']::-webkit-outer-spin-button {
+  height: auto;
+}
+
+[type='search'] {
+  outline-offset: -2px;
+  appearance: none;
+}
+
+[type='search']::-webkit-search-decoration {
+  -webkit-appearance: none;
+}
+
+::-webkit-file-upload-button {
+  font: inherit;
+  -webkit-appearance: button;
+}
+
+output {
+  display: inline-block;
+}
+
+summary {
+  display: list-item;
+  cursor: pointer;
+}
+
+template {
+  display: none;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+iframe {
+  border: 0;
+  vertical-align: bottom;
+}
+
+#app,
+#__nuxt {
+  max-width: 100vw;
+  overflow-x: hidden;
+  overflow-y: auto;
+  scroll-behavior: smooth;
+}
+
+main {
+  position: relative;
+  z-index: 1;
+}
+
+::-webkit-scrollbar {
+  width: $scrollbar-w;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 100px;
+  border: 4px solid transparent;
+  background-clip: content-box;
+  background-color: lighten(black, 75%);
+
+  @include darkmode {
+    background-color: darken(white, 75%);
+  }
+}
+
+[class*='material-'] {
+  vertical-align: top;
+}
+
+.font_ja {
+  font-family: $font-jp-sans;
+}
+.font_en {
+  font-family: $font-en-sans;
+}
+.font_zh_TW {
+  font-family: $font-tw-sans;
+}
+.font_zh_CN {
+  font-family: $font-cn-sans;
+}

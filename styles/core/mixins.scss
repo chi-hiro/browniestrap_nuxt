@@ -1,0 +1,243 @@
+@use '../setting' as *;
+
+//***********************************************************************
+//  Common
+//***********************************************************************
+@mixin hoverMouse {
+  &:hover {
+    text-decoration: none;
+
+    @media (hover: hover) and (pointer: fine) {
+      @content;
+    }
+  }
+}
+
+@mixin focusMouse {
+  &:focus-visible {
+    @content;
+  }
+
+  &:hover {
+    text-decoration: none;
+
+    @media (hover: hover) and (pointer: fine) {
+      @content;
+    }
+  }
+}
+
+@mixin isMouse {
+  @media (pointer: fine) {
+    @content;
+  }
+}
+
+@mixin isTouch {
+  @media (pointer: coarse) {
+    @content;
+  }
+}
+
+@mixin darkmode {
+  @if $enable-darkmode {
+    @media (prefers-color-scheme: dark) {
+      @content;
+    }
+  }
+}
+
+@mixin imgFluid {
+  max-width: 100%;
+  height: auto;
+}
+
+@mixin nowrap {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@mixin textKerning {
+  font-feature-settings: 'pkna';
+}
+
+@mixin textClamp($line: 1) {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: $line;
+  overflow: hidden;
+  white-space: normal;
+  text-overflow: ellipsis;
+}
+
+@mixin transition($property: all) {
+  transition-property: $property;
+  transition-duration: $duration;
+  transition-timing-function: $easing;
+}
+
+@mixin buttonReset {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  user-select: none;
+  outline: none;
+  padding: 0;
+  appearance: none;
+}
+
+@mixin overlay {
+  background-color: $color-overlay-bg;
+  backdrop-filter: blur(10px);
+
+  @include darkmode {
+    background-color: $dark-color-overlay-bg;
+  }
+}
+
+@mixin scrollX {
+  overflow-x: auto;
+  overflow-y: hidden;
+  overscroll-behavior: contain;
+}
+
+@mixin scrollY {
+  overflow-x: hidden;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+@mixin rounded($radius: $border-radius, $fallback: false) {
+  @if $enable-rounded or $fallback {
+    border-radius: $radius;
+  }
+}
+
+@mixin roundedTop($radius: $border-radius, $fallback: false) {
+  @if $enable-rounded or $fallback {
+    border-top-left-radius: $radius;
+    border-top-right-radius: $radius;
+  }
+}
+
+@mixin roundedBottom($radius: $border-radius, $fallback: false) {
+  @if $enable-rounded or $fallback {
+    border-bottom-left-radius: $radius;
+    border-bottom-right-radius: $radius;
+  }
+}
+
+@mixin roundedLeft($radius: $border-radius, $fallback: false) {
+  @if $enable-rounded or $fallback {
+    border-top-left-radius: $radius;
+    border-bottom-left-radius: $radius;
+  }
+}
+
+@mixin roundedRight($radius: $border-radius, $fallback: false) {
+  @if $enable-rounded or $fallback {
+    border-top-right-radius: $radius;
+    border-bottom-right-radius: $radius;
+  }
+}
+
+@mixin breakpointUp() {
+  @media (min-width: $breakpoint) {
+    @content;
+  }
+}
+
+@mixin breakpointDown() {
+  @media (max-width: ($breakpoint - 0.02px)) {
+    @content;
+  }
+}
+
+//***********************************************************************
+//  Responsive
+//***********************************************************************
+@function breakpoint-min($name, $breakpoints: $grid-breakpoints) {
+  $min: map-get($breakpoints, $name);
+  @return if($min != 0, $min, null);
+}
+
+@function breakpoint-max($name, $breakpoints: $grid-breakpoints) {
+  $max: map-get($breakpoints, $name);
+  @return if($max and $max > 0, $max - 0.02, null);
+}
+
+@function breakpoint-infix($name, $breakpoints: $grid-breakpoints) {
+  @return if(breakpoint-min($name, $breakpoints) == null, '', #{$name} + \:);
+}
+
+@mixin breakpoint-up($name: $breakpoint) {
+  $min: breakpoint-min($name, $grid-breakpoints);
+
+  @if $min {
+    @media (min-width: $min) {
+      @content;
+    }
+  } @else {
+    @content;
+  }
+}
+
+@mixin breakpoint-down($name: $breakpoint) {
+  $max: breakpoint-max($name, $grid-breakpoints);
+
+  @if $max {
+    @media (max-width: $max) {
+      @content;
+    }
+  } @else {
+    @content;
+  }
+}
+
+//***********************************************************************
+//  Forms
+//***********************************************************************
+@mixin inputSize($size: md) {
+  @if $size == md {
+    height: $input-height-md;
+    padding: $input-padding-md $input-padding-x;
+    font-size: $input-fontsize-md;
+    line-height: $icon-size;
+  }
+
+  @if $size == sm {
+    height: $input-height-sm;
+    padding: $input-padding-sm $input-padding-x;
+    font-size: $input-fontsize-sm;
+    line-height: $icon-size;
+  }
+
+  @if $size == lg {
+    height: $input-height-lg;
+    padding: $input-padding-lg $input-padding-x;
+    font-size: $input-fontsize-lg;
+    line-height: $icon-size;
+  }
+}
+
+//***********************************************************************
+//  Base64 Icons
+//***********************************************************************
+@function str-replace($string, $search, $replace: '') {
+  $index: str-index($string, $search);
+
+  @if $index {
+    @return str-slice($string, 1, $index - 1) + $replace +
+      str-replace(str-slice($string, $index + str-length($search)), $search, $replace);
+  }
+
+  @return $string;
+}
+
+@function base64Encode($string) {
+  $string: str-replace(#{$string}, '#', '%23');
+  $string: str-replace(#{$string}, ',', '%2C');
+
+  @return $string;
+}

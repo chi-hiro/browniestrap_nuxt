@@ -1,0 +1,235 @@
+@use '/styles/core/core' as *;
+
+.header-margin {
+  margin-top: $header-height-sm;
+
+  @include breakpointUp {
+    margin-top: $header-height;
+  }
+}
+
+//***********************************************************************
+//  Border
+//***********************************************************************
+.border-t {
+  border-top: 1px solid $color-border;
+  @include darkmode {
+    border-color: $dark-color-border;
+  }
+}
+
+.border-b {
+  border-bottom: 1px solid $color-border;
+  @include darkmode {
+    border-color: $dark-color-border;
+  }
+}
+
+.border-l {
+  border-left: 1px solid $color-border;
+  @include darkmode {
+    border-color: $dark-color-border;
+  }
+}
+
+.border-r {
+  border-right: 1px solid $color-border;
+  @include darkmode {
+    border-color: $dark-color-border;
+  }
+}
+
+//***********************************************************************
+//  Display
+//***********************************************************************
+.hidden-up {
+  @include breakpointUp {
+    display: none !important;
+  }
+}
+
+.hidden-down {
+  @include breakpointDown {
+    display: none !important;
+  }
+}
+
+.hidden-light {
+  @media (prefers-color-scheme: light) {
+    display: none !important;
+  }
+}
+
+.hidden-dark {
+  @media (prefers-color-scheme: dark) {
+    display: none !important;
+  }
+}
+
+//***********************************************************************
+//  Text
+//***********************************************************************
+.text-clamp-1 {
+  @include textClamp(1);
+}
+.text-clamp-2 {
+  @include textClamp(2);
+}
+.text-clamp-3 {
+  @include textClamp(3);
+}
+
+//***********************************************************************
+//  Image
+//***********************************************************************
+.img-fluid {
+  @include imgFluid;
+}
+
+//***********************************************************************
+//  Embed
+//***********************************************************************
+$embed-ratio: (1 1), (16 9), (21, 9), (4 3), (3 1), (2 1);
+
+.embed {
+  display: block;
+  width: 100%;
+  padding: 0;
+  overflow: hidden;
+
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+
+  > * {
+    width: 100%;
+    height: 100% !important;
+    border: 0;
+  }
+
+  img {
+    object-fit: cover;
+  }
+
+  a & {
+    margin-bottom: 0;
+  }
+}
+
+@each $value in $embed-ratio {
+  .embed-#{nth($value, 1)}by#{nth($value, 2)} {
+    aspect-ratio: calc(nth($value, 1) / nth($value, 2));
+
+    &.portrait {
+      aspect-ratio: calc(nth($value, 2) / nth($value, 1));
+    }
+  }
+
+  @include breakpointUp {
+    .lg\:embed-#{nth($value, 1)}by#{nth($value, 2)} {
+      aspect-ratio: calc(nth($value, 1) / nth($value, 2));
+
+      &.portrait {
+        aspect-ratio: calc(nth($value, 2) / nth($value, 1));
+      }
+    }
+  }
+}
+
+.embed-1vh {
+  height: 100vh;
+  height: 100svh;
+}
+
+.lg\:embed-1vh {
+  @include breakpointUp {
+    height: 100vh;
+    height: 100svh;
+  }
+}
+
+//***********************************************************************
+//  Hover
+//***********************************************************************
+.hover-border {
+  display: block;
+  position: relative;
+
+  &::after {
+    content: '';
+    pointer-events: none;
+    position: absolute;
+    z-index: 10;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    border: $border-width solid $color-link;
+    opacity: 0;
+    transition: opacity $duration linear;
+  }
+
+  @include focusMouse {
+    &::after {
+      opacity: 1;
+    }
+  }
+}
+
+.hover-zoom {
+  transition: transform 800ms $easeOutQuint;
+
+  @include focusMouse {
+    transform: scale(1.03);
+  }
+}
+
+.hover-opacity {
+  display: block;
+  transition: opacity $duration linear;
+
+  @include focusMouse {
+    opacity: 0.85;
+  }
+}
+
+//***********************************************************************
+//  Color
+//***********************************************************************
+@each $key, $value in $color {
+  .text-#{'' + $key} {
+    color: $value !important;
+  }
+}
+
+.text-muted {
+  color: $color-muted !important;
+
+  @include darkmode {
+    color: $dark-color-muted !important;
+  }
+}
+
+.text-heading {
+  color: $color-headings !important;
+
+  @include darkmode {
+    color: $dark-color-headings !important;
+  }
+}
+
+.bg-muted {
+  background-color: $color-muted-bg;
+
+  @include darkmode {
+    background-color: $dark-color-muted-bg;
+  }
+}
+
+.bg-light {
+  background-color: $color-body-bg;
+}
+
+.bg-dark {
+  background-color: $dark-color-body-bg;
+}

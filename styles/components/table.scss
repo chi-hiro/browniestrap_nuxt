@@ -1,0 +1,158 @@
+@use '/styles/core/core' as *;
+
+$table-cell-padding-y: 1rem;
+$table-cell-padding-x: 1rem;
+$table-border-width: 1px;
+
+//***********************************************************************
+//  Base
+//***********************************************************************
+.table {
+  width: 100%;
+  max-width: 100%;
+  margin-bottom: 1.5rem;
+  border-bottom: $table-border-width solid lighten(black, 90%);
+
+  @include darkmode {
+    border-color: darken(white, 80%);
+  }
+
+  th,
+  td {
+    padding: $table-cell-padding-y $table-cell-padding-x;
+    vertical-align: top;
+
+    &:first-child {
+      padding-left: 0;
+    }
+
+    &:last-child {
+      padding-right: 0;
+    }
+  }
+
+  th {
+    font-weight: 700;
+    white-space: nowrap;
+    color: $color-headings;
+
+    @include darkmode {
+      color: $dark-color-headings;
+    }
+  }
+
+  tbody {
+    tr {
+      border-top: $table-border-width solid lighten(black, 90%);
+
+      @include darkmode {
+        border-color: darken(white, 80%);
+      }
+    }
+
+    th {
+      padding-left: 0;
+
+      @include breakpointDown {
+        padding-right: 0;
+      }
+    }
+  }
+}
+
+//***********************************************************************
+//  Bordered
+//***********************************************************************
+.table-bordered {
+  border: $table-border-width solid lighten(black, 90%);
+
+  @include darkmode {
+    border-color: darken(white, 80%);
+  }
+
+  th,
+  td {
+    border: $table-border-width solid lighten(black, 90%);
+
+    @include darkmode {
+      border-color: darken(white, 80%);
+    }
+
+    &:first-child {
+      padding-left: $table-cell-padding-x;
+      padding-right: $table-cell-padding-x;
+    }
+
+    &:last-child {
+      padding-right: $table-cell-padding-x;
+    }
+  }
+
+  th {
+    background-color: $color-muted-bg;
+
+    @include darkmode {
+      background-color: $dark-color-muted-bg;
+    }
+  }
+
+  thead {
+    th,
+    td {
+      border-bottom-width: (2 * $table-border-width);
+    }
+  }
+}
+
+//***********************************************************************
+//  Striped
+//***********************************************************************
+.table-striped {
+  border: none;
+
+  th,
+  td {
+    &:first-child {
+      padding-left: $table-cell-padding-x;
+    }
+
+    &:last-child {
+      padding-right: $table-cell-padding-x;
+    }
+  }
+
+  tbody tr {
+    border: none;
+
+    &:nth-child(odd) {
+      background-color: $color-muted-bg;
+
+      @include darkmode {
+        background-color: $dark-color-muted-bg;
+      }
+    }
+  }
+}
+
+//***********************************************************************
+//  Responsive (legacy)
+//***********************************************************************
+.table-responsive {
+  display: block;
+  width: 100%;
+  margin-bottom: 1.5rem;
+  overflow-x: auto;
+
+  .table {
+    min-width: 600px;
+    margin: 0;
+  }
+
+  th {
+    @include nowrap;
+  }
+
+  &.table-bordered {
+    border: 0;
+  }
+}

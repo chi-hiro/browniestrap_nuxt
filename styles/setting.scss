@@ -1,0 +1,181 @@
+//*******************************************************************************
+// Config
+//*******************************************************************************
+$enable-darkmode: true;
+$enable-rounded: true;
+
+//*******************************************************************************
+// Color
+//*******************************************************************************
+// Theme
+$color-primary: #6ed4be;
+$color-secondary: #d38a58;
+$color-success: #8ccd26;
+$color-info: #5fbedb;
+$color-warning: #eaa930;
+$color-danger: #e13d3b;
+
+$color: (
+  primary: $color-primary,
+  secondary: $color-secondary,
+  success: $color-success,
+  info: $color-info,
+  warning: $color-warning,
+  danger: $color-danger,
+  white: white,
+);
+
+// Link
+$color-link: $color-primary;
+$color-link-hover: $color-primary;
+
+// Light
+$color-body: #606060;
+$color-headings: #101010;
+$color-muted: rgba(0, 0, 0, 0.4);
+$color-border: rgba(0, 0, 0, 0.1);
+$color-input-border: rgba(0, 0, 0, 0.15);
+$color-body-bg: #ffffff;
+$color-muted-bg: rgba(0, 0, 0, 0.03);
+$color-header-bg: #ffffff;
+$color-overlay-bg: rgba(0, 0, 0, 0.3);
+
+// Dark
+$dark-color-body: #ffffff;
+$dark-color-headings: #ffffff;
+$dark-color-muted: rgba(255, 255, 255, 0.4);
+$dark-color-border: rgba(255, 255, 255, 0.1);
+$dark-color-input-border: rgba(255, 255, 255, 0.15);
+$dark-color-body-bg: #202020;
+$dark-color-muted-bg: rgba(255, 255, 255, 0.03);
+$dark-color-header-bg: #404040;
+$dark-color-overlay-bg: rgba(0, 0, 0, 0.3);
+
+// Shadow
+$shadow-light: 0 2px 10px rgba(0, 0, 0, 0.03);
+$shadow-dark: 0 4px 20px rgba(0, 0, 0, 0.1);
+$shadow-light-reverse: 0 -2px 10px rgba(0, 0, 0, 0.03);
+$shadow-dark-reverse: 0 -4px 20px rgba(0, 0, 0, 0.1);
+
+//*******************************************************************************
+// Font
+//*******************************************************************************
+// Family
+$font-jp-sans: -apple-system, BlinkMacSystemFont, Roboto, 'Segoe UI', 'Hiragino Sans', 'Yu Gothic Medium', 'Yu Gothic',
+  Meiryo, sans-serif;
+$font-en-sans: 'Urbanist', -apple-system, BlinkMacSystemFont, Roboto, 'Segoe UI', Helvetica, Arial, sans-serif;
+$font-cn-sans: 'Microsoft YaHei', 'PingFang SC', sans-serif;
+$font-tw-sans: 'Microsoft JhengHei', 'PingFang TC', sans-serif;
+$font-jp-serif: 'Hiragino Mincho ProN', 'Hiragino Mincho Pro', '游明朝', YuMincho, serif;
+$font-en-serif: 'Times New Roman', serif;
+$font-cn-serif: 'Kaiti SC', 'SimSun', serif;
+
+// Base
+$font-base-size: 16px;
+$font-base-family: $font-jp-sans;
+$font-base-line-height: 1.75;
+
+// Headings
+$font-heading-h1: 2.25rem;
+$font-heading-h2: 2rem;
+$font-heading-h3: 1.75rem;
+$font-heading-h4: 1.5rem;
+$font-heading-h5: 1.25rem;
+$font-heading-h6: 1rem;
+
+$font-heading-h1-sm: 1.5rem;
+$font-heading-h2-sm: 1.4rem;
+$font-heading-h3-sm: 1.3rem;
+$font-heading-h4-sm: 1.2rem;
+$font-heading-h5-sm: 1.1rem;
+$font-heading-h6-sm: 1rem;
+
+//*******************************************************************************
+// UI
+//*******************************************************************************
+// Base
+$breakpoint: 1024px;
+$grid-gutter-width: 40px;
+
+$icon-size: 24px;
+$component-height: 48px;
+$border-width: 2px;
+$border-radius: 8px;
+
+$header-height: 80px;
+$header-height-sm: 64px;
+$scrollbar-w: 16px;
+
+// z-index
+$zindex-bar: 1000;
+$zindex-overlay: 1001;
+$zindex-sidebar: 1002;
+$zindex-modal: 1010;
+$zindex-loader: 9999;
+
+// Form
+$input-border-radius: 8px;
+$input-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+$input-padding-x: 12px;
+$button-padding-x: 20px;
+
+$input-height-md: 48px;
+$input-fontsize-md: 1rem;
+$input-padding-md: calc(($input-height-md - $icon-size) / 2 - $border-width);
+
+$input-height-sm: 40px;
+$input-fontsize-sm: 0.875rem;
+$input-padding-sm: calc(($input-height-sm - $icon-size) / 2 - $border-width);
+
+$input-height-lg: 56px;
+$input-fontsize-lg: 1.125rem;
+$input-padding-lg: calc(($input-height-lg - $icon-size) / 2 - $border-width);
+
+//*******************************************************************************
+// Easing
+//*******************************************************************************
+$easeInSine: cubic-bezier(0.12, 0, 0.39, 0);
+$easeOutSine: cubic-bezier(0.61, 1, 0.88, 1);
+$easeInOutSine: cubic-bezier(0.37, 0, 0.63, 1);
+$easeInCubic: cubic-bezier(0.32, 0, 0.67, 0);
+$easeOutCubic: cubic-bezier(0.33, 1, 0.68, 1);
+$easeInOutCubic: cubic-bezier(0.65, 0, 0.35, 1);
+$easeInQuint: cubic-bezier(0.64, 0, 0.78, 0);
+$easeOutQuint: cubic-bezier(0.22, 1, 0.36, 1);
+$easeInOutQuint: cubic-bezier(0.83, 0, 0.17, 1);
+$easeInCirc: cubic-bezier(0.55, 0, 1, 0.45);
+$easeOutCirc: cubic-bezier(0, 0.55, 0.45, 1);
+$easeInOutCirc: cubic-bezier(0.85, 0, 0.15, 1);
+$easeInQuad: cubic-bezier(0.11, 0, 0.5, 0);
+$easeOutQuad: cubic-bezier(0.5, 1, 0.89, 1);
+$easeInOutQuad: cubic-bezier(0.45, 0, 0.55, 1);
+$easeInQuart: cubic-bezier(0.5, 0, 0.75, 0);
+$easeOutQuart: cubic-bezier(0.25, 1, 0.5, 1);
+$easeInOutQuart: cubic-bezier(0.76, 0, 0.24, 1);
+$easeInExpo: cubic-bezier(0.7, 0, 0.84, 0);
+$easeOutExpo: cubic-bezier(0.16, 1, 0.3, 1);
+$easeInOutExpo: cubic-bezier(0.87, 0, 0.13, 1);
+$easeInBack: cubic-bezier(0.36, 0, 0.66, -0.56);
+$easeOutBack: cubic-bezier(0.34, 1.56, 0.64, 1);
+$easeInOutBack: cubic-bezier(0.68, -0.6, 0.32, 1.6);
+
+$duration: 300ms;
+$easing: $easeInOutQuart;
+
+//*******************************************************************************
+// Responsive
+//*******************************************************************************
+$grid-breakpoints: (
+  xs: 0,
+  sm: 640px,
+  md: 768px,
+  lg: 1024px,
+  xl: 1280px,
+);
+
+$grid-breakpoints: map-merge(
+  $grid-breakpoints,
+  (
+    bp: map-get($grid-breakpoints, 'lg'),
+  )
+);

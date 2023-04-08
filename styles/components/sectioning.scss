@@ -1,0 +1,186 @@
+@use '/styles/core/core' as *;
+
+.section {
+  position: relative;
+  max-width: 100vw;
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+
+  @include breakpointUp {
+    padding-top: 6rem;
+    padding-bottom: 6rem;
+  }
+}
+
+.section-grid {
+  position: relative;
+  max-width: 100vw;
+  padding-top: 0;
+  padding-bottom: 0;
+
+  @include breakpointUp {
+    padding-top: 6rem;
+    padding-bottom: 6rem;
+  }
+
+  .section-grid-body {
+    .container > *:last-child {
+      margin-bottom: 0;
+    }
+
+    @include breakpointDown {
+      padding-top: 3rem;
+      padding-bottom: 3rem;
+    }
+  }
+
+  .section-grid-img {
+    @include breakpointUp {
+      min-height: 100%;
+      max-height: 80vh;
+    }
+
+    > *:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.section-cover {
+  position: relative;
+  max-width: 100vw;
+  padding: 0;
+  overflow: hidden;
+
+  > * {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 10;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .section-cover-bg {
+    position: relative;
+    z-index: 1;
+
+    &.overlay {
+      &::after {
+        content: '';
+        position: absolute;
+        z-index: 2;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+      }
+    }
+  }
+}
+
+.section-heading {
+  color: $color-headings;
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+
+  @include darkmode {
+    color: $dark-color-headings;
+  }
+
+  @include breakpointUp {
+    font-size: 2.25rem;
+    margin-bottom: 2.5rem;
+  }
+
+  img {
+    vertical-align: bottom;
+  }
+
+  .text-white & {
+    color: inherit;
+  }
+}
+
+.section-heading-sm {
+  font-weight: normal;
+
+  &:not(:first-child) {
+    margin-top: $grid-gutter-width;
+  }
+}
+
+.lead {
+  font-size: 1.5rem;
+  line-height: 1.3;
+  box-decoration-break: clone;
+  @include textKerning;
+
+  @include breakpointUp {
+    font-size: 2rem;
+  }
+}
+
+.list-chart {
+  counter-reset: listchart;
+  margin: 0 0 1rem;
+  padding: 0;
+  list-style: none;
+
+  li {
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+    line-height: 1.5;
+
+    + li {
+      margin-top: 1rem;
+
+      &::after {
+        content: '';
+        position: absolute;
+        z-index: 1;
+        left: calc((32px - 2px) / 2);
+        bottom: 100%;
+        margin-bottom: -8px;
+        width: 2px;
+        height: 100%;
+        background-color: $color-body;
+
+        @include darkmode {
+          background-color: $dark-color-body;
+        }
+      }
+    }
+
+    &::before {
+      position: relative;
+      z-index: 2;
+      flex: 0 0 auto;
+      counter-increment: listchart;
+      content: counter(listchart) '';
+      border: 2px solid $color-body;
+      background-color: $color-body-bg;
+      line-height: 1;
+      text-align: center;
+      padding: 6px;
+      margin-top: -4px;
+      min-width: 2rem;
+      border-radius: 9999px;
+
+      @include darkmode {
+        border-color: $dark-color-body;
+        background-color: $dark-color-body-bg;
+      }
+    }
+  }
+}
