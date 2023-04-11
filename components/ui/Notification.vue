@@ -6,9 +6,10 @@ import Card from '@/components/ui/Card.vue'
 // Variables
 //*******************************************************************************
 const props = defineProps<{
-  color: string
+  theme: string
   message: string
   position?: string
+  direction?: string
 }>()
 
 const state = reactive({
@@ -49,10 +50,17 @@ const dismiss = () => {
 // Hooks
 //*******************************************************************************
 onBeforeMount(() => {
+  const positionClass = props.position || 'top'
+  const directionClass = props.direction || 'y'
+
   if (!document.querySelector('.notification-container')) {
     const container = document.createElement('div')
-    container.classList.add('notification-container', props.position ? props.position : 'top')
+    container.classList.add('notification-container', positionClass, directionClass)
     document.body.appendChild(container)
+  } else {
+    const container = document.querySelector('.notification-container')
+    container?.classList.remove('top', 'left', 'right', 'center', 'x', 'y')
+    container?.classList.add(positionClass, directionClass)
   }
 })
 
@@ -69,8 +77,8 @@ onMounted(() => {
       v-show="state.isShow"
       class="card-notification"
       model="bg"
-      :color="props.color"
-      :icon="icon[props.color]"
+      :color="props.theme"
+      :icon="icon[props.theme]"
       ref="el"
     >
       <strong>{{ props.message }}</strong>
@@ -113,38 +121,51 @@ onMounted(() => {
 
 .notification-enter-from,
 .notification-leave-to {
-  transform: translateY(-110%);
   opacity: 0;
 }
 
 .notification-container {
-  &.left .card-notification {
-    &.notification-enter-from {
-      transform: translateX(-100%);
+  &.x {
+    &.top .card-notification,
+    &.bottom .card-notification {
+      &.notification-enter-from {
+        transform: translateX(20px);
+      }
+      &.notification-leave-to {
+        transform: translateX(-20px);
+      }
     }
 
-    &.notification-leave-to {
-      transform: translateX(-100%);
+    &.left .card-notification {
+      &.notification-enter-from,
+      &.notification-leave-to {
+        transform: translateX(-100px);
+      }
+    }
+
+    &.right .card-notification {
+      &.notification-enter-from,
+      &.notification-leave-to {
+        transform: translateX(100px);
+      }
     }
   }
 
-  &.right .card-notification {
-    &.notification-enter-from {
-      transform: translateX(100%);
+  &.y {
+    &.top .card-notification,
+    &.left .card-notification,
+    &.right .card-notification {
+      &.notification-enter-from,
+      &.notification-leave-to {
+        transform: translateY(-110%);
+      }
     }
 
-    &.notification-leave-to {
-      transform: translateX(100%);
-    }
-  }
-
-  &.center .card-notification {
-    &.notification-enter-from {
-      transform: translateY(100%);
-    }
-
-    &.notification-leave-to {
-      transform: translateY(-100%);
+    &.bottom .card-notification {
+      &.notification-enter-from,
+      &.notification-leave-to {
+        transform: translateY(110%);
+      }
     }
   }
 }
@@ -183,6 +204,10 @@ onMounted(() => {
 
   &.center {
     justify-content: center;
+  }
+
+  &.bottom {
+    justify-content: flex-end;
   }
 }
 </style>

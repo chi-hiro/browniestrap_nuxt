@@ -293,23 +293,56 @@ const scrollModal = ref<InstanceType<typeof Modal>>()
           @click="toast('success', 'You successfully read this important alert message.')"
           title="Toast"
         />
+
         <Button
           model="bg sm"
           color="info"
-          @click="toast('info', 'This alert needs your attention, but it\'s not super important.', 'center')"
-          title="Toast(center)"
+          @click="toast('info', 'This alert needs your attention, but it\'s not super important.', 'left')"
+          title="Toast(left)"
         />
+
         <Button
           model="bg sm"
           color="warning"
-          @click="toast('warning', 'Better check yourself, you\'re not looking too good.', 'left')"
-          title="Toast(left)"
+          @click="toast('warning', 'Better check yourself, you\'re not looking too good.', 'right')"
+          title="Toast(right)"
         />
+
         <Button
           model="bg sm"
           color="danger"
-          @click="toast('danger', 'Change a few things up and try submitting again.', 'right')"
-          title="Toast(right)"
+          @click="toast('danger', 'Change a few things up and try submitting again.', 'bottom')"
+          title="Toast(bottom)"
+        />
+      </div>
+
+      <div class="grid lg:flex gap-0.5 mt-0.5">
+        <Button
+          model="bg sm"
+          color="success"
+          @click="toast('success', 'You successfully read this important alert message.', 'top', 'x')"
+          title="Toast(top, x)"
+        />
+
+        <Button
+          model="bg sm"
+          color="info"
+          @click="toast('info', 'This alert needs your attention, but it\'s not super important.', 'left', 'x')"
+          title="Toast(left, x)"
+        />
+
+        <Button
+          model="bg sm"
+          color="warning"
+          @click="toast('warning', 'Better check yourself, you\'re not looking too good.', 'right', 'x')"
+          title="Toast(right, x)"
+        />
+
+        <Button
+          model="bg sm"
+          color="danger"
+          @click="toast('danger', 'Change a few things up and try submitting again.', 'bottom', 'x')"
+          title="Toast(bottom, x)"
         />
       </div>
     </div>
