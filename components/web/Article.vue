@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { computed } from 'vue'
 import Chip from '@/components/ui/Chip.vue'
 
 const props = defineProps<{

@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { computed } from 'vue'
 import { variables } from '@/lib/styleUtl'
 import Icon from '@/components/ui/Icon.vue'
 

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { render, ref, reactive, onMounted } from 'vue'
+import { render } from 'vue'
 import { getTouchPosition } from '@/lib/getTouchPosition'
 import { scrollElement } from '@/lib/pageScroll'
 import { toggleScrollbarSpacer } from '@/lib/toggleScrollbarSpacer'

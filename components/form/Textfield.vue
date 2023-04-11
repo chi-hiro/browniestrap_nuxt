@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { ref, reactive, computed, watchEffect, onMounted } from 'vue'
 import { variables } from '@/lib/styleUtl'
 import Icon from '@/components/ui/Icon.vue'
 

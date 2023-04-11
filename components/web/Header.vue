@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { ref, reactive, onMounted } from 'vue'
 import { env } from '@/lib/env'
 import { anchor } from '@/lib/mixins'
 import { scrollElement, pageScroll } from '@/lib/pageScroll'

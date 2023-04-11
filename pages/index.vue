@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { ref } from 'vue'
 import { pageback, pagetop } from '@/lib/mixins'
 import { toast } from '@/lib/toast'
 import { openViewer } from '@/lib/viewer'

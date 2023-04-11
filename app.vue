@@ -3,17 +3,29 @@ import { env } from '@/lib/env'
 import { reveal } from '@/lib/reveal'
 
 //*******************************************************************************
+// Variables
+//*******************************************************************************
+const state = reactive<{
+  viewport: string
+}>({
+  viewport: env('viewport'),
+})
+
+useHead({
+  meta: [{ name: 'viewport', content: state.viewport }],
+})
+
+//*******************************************************************************
 // Methods
 //*******************************************************************************
 const setLayout = () => {
-  document.querySelector('meta[name=viewport]')?.setAttribute('content', env('viewport'))
+  state.viewport = env('viewport')
 }
 
 //*******************************************************************************
 // Hooks
 //*******************************************************************************
 onMounted(() => {
-  setLayout()
   window.addEventListener('orientationchange', setLayout)
   env('mediaquery').addEventListener('change', setLayout)
   reveal()

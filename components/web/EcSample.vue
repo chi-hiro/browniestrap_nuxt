@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { ref, reactive, onMounted, onBeforeUnmount } from 'vue'
 import { env } from '@/lib/env'
 import { scrollElement, pageScroll } from '@/lib/pageScroll'
 import Carousel from '@/components/carousel/Carousel.vue'

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, reactive, computed, useSlots, nextTick, Teleport as teleport_, TeleportProps, VNodeProps } from 'vue'
+import { Teleport as teleport_, TeleportProps, VNodeProps } from 'vue'
 import { toggleScrollbarSpacer } from '@/lib/toggleScrollbarSpacer'
 import Button from '@/components/ui/Button.vue'
 import Icon from '@/components/ui/Icon.vue'

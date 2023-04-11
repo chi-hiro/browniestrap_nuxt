@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { ref, reactive, nextTick, onMounted, watch, watchEffect, computed } from 'vue'
 import { Swiper, SwiperSlide } from 'swiper/vue'
 import { Autoplay, EffectFade, Navigation, Pagination, Lazy } from 'swiper'
 import { env } from '@/lib/env'

@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { ref, reactive, nextTick, watchEffect } from 'vue'
 import { env } from '@/lib/env'
 import { getTouchPosition } from '@/lib/getTouchPosition'
 
