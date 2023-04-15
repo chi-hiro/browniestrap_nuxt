@@ -33,6 +33,13 @@ const state = reactive({
 
 const basicModal = ref<InstanceType<typeof Modal>>()
 const scrollModal = ref<InstanceType<typeof Modal>>()
+
+// API Test
+const { $api } = useNuxtApp()
+const apiTest = async () => {
+  const res = await $api.StoreApi.getInventory()
+  console.log('openapi test:', res)
+}
 </script>
 
 <template>

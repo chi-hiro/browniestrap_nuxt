@@ -297,6 +297,7 @@ $feedbackColor: v-bind('feedbackColor');
       z-index: 10;
       bottom: calc($icon-size / 2);
       left: 0;
+      max-width: 80%;
       min-height: $icon-size;
       margin: 0 0.5rem;
       padding: 0 0.25rem;
