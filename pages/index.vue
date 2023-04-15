@@ -33,13 +33,6 @@ const state = reactive({
 
 const basicModal = ref<InstanceType<typeof Modal>>()
 const scrollModal = ref<InstanceType<typeof Modal>>()
-
-// API Test
-const { $api } = useNuxtApp()
-const apiTest = async () => {
-  const res = await $api.StoreApi.getInventory()
-  console.log('openapi test:', res)
-}
 </script>
 
 <template>
@@ -691,38 +684,38 @@ const apiTest = async () => {
 
       <h3 class="section-heading-sm">text</h3>
       <div class="flex flex-wrap gap-0.5">
-        <Chip href="/dummy" model="text sm" color="primary" title="primary" />
-        <Chip href="/dummy" model="text sm" color="secondary" title="secondary" />
-        <Chip href="/dummy" model="text sm" color="success" title="success" />
-        <Chip href="/dummy" model="text sm" color="info" title="info" />
-        <Chip href="/dummy" model="text sm" color="warning" title="warning" />
-        <Chip href="/dummy" model="text sm" color="danger" title="danger" />
-        <Chip href="/dummy" model="text sm" color="white" title="white" />
-        <Chip href="/dummy" model="text sm" color="default" title="default" />
+        <Chip href="/test" model="text sm" color="primary" title="primary" />
+        <Chip href="/test" model="text sm" color="secondary" title="secondary" />
+        <Chip href="/test" model="text sm" color="success" title="success" />
+        <Chip href="/test" model="text sm" color="info" title="info" />
+        <Chip href="/test" model="text sm" color="warning" title="warning" />
+        <Chip href="/test" model="text sm" color="danger" title="danger" />
+        <Chip href="/test" model="text sm" color="white" title="white" />
+        <Chip href="/test" model="text sm" color="default" title="default" />
       </div>
 
       <h3 class="section-heading-sm">bg</h3>
       <div class="flex flex-wrap gap-0.5">
-        <Chip href="/dummy" model="bg sm" color="primary" title="primary" />
-        <Chip href="/dummy" model="bg sm" color="secondary" title="secondary" />
-        <Chip href="/dummy" model="bg sm" color="success" title="success" />
-        <Chip href="/dummy" model="bg sm" color="info" title="info" />
-        <Chip href="/dummy" model="bg sm" color="warning" title="warning" />
-        <Chip href="/dummy" model="bg sm" color="danger" title="danger" />
-        <Chip href="/dummy" model="bg sm" color="white" title="white" />
-        <Chip href="/dummy" model="bg sm" color="default" title="default" />
+        <Chip href="/test" model="bg sm" color="primary" title="primary" />
+        <Chip href="/test" model="bg sm" color="secondary" title="secondary" />
+        <Chip href="/test" model="bg sm" color="success" title="success" />
+        <Chip href="/test" model="bg sm" color="info" title="info" />
+        <Chip href="/test" model="bg sm" color="warning" title="warning" />
+        <Chip href="/test" model="bg sm" color="danger" title="danger" />
+        <Chip href="/test" model="bg sm" color="white" title="white" />
+        <Chip href="/test" model="bg sm" color="default" title="default" />
       </div>
 
       <h3 class="section-heading-sm">border</h3>
       <div class="flex flex-wrap gap-0.5">
-        <Chip href="/dummy" model="border sm" color="primary" title="primary" />
-        <Chip href="/dummy" model="border sm" color="secondary" title="secondary" />
-        <Chip href="/dummy" model="border sm" color="success" title="success" />
-        <Chip href="/dummy" model="border sm" color="info" title="info" />
-        <Chip href="/dummy" model="border sm" color="warning" title="warning" />
-        <Chip href="/dummy" model="border sm" color="danger" title="danger" />
-        <Chip href="/dummy" model="border sm" color="white" title="white" />
-        <Chip href="/dummy" model="border sm" color="default" title="default" />
+        <Chip href="/test" model="border sm" color="primary" title="primary" />
+        <Chip href="/test" model="border sm" color="secondary" title="secondary" />
+        <Chip href="/test" model="border sm" color="success" title="success" />
+        <Chip href="/test" model="border sm" color="info" title="info" />
+        <Chip href="/test" model="border sm" color="warning" title="warning" />
+        <Chip href="/test" model="border sm" color="danger" title="danger" />
+        <Chip href="/test" model="border sm" color="white" title="white" />
+        <Chip href="/test" model="border sm" color="default" title="default" />
       </div>
 
       <h3 class="section-heading-sm">with Icon</h3>
@@ -815,7 +808,7 @@ const apiTest = async () => {
               <a href="#"> Item 2 </a>
             </li>
             <li>
-              <NuxtLink href="/dummy" class="text-danger">
+              <NuxtLink href="/test" class="text-danger">
                 <Icon value="delete" />
                 Item 3
               </NuxtLink>

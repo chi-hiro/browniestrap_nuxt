@@ -5,7 +5,7 @@ export default defineNuxtPlugin(() => {
 
   const config = () => {
     return new openapi.Configuration({
-      basePath: runtimeConfig.apiBaseUrl,
+      basePath: runtimeConfig.public.apiBaseUrl,
     })
   }
 

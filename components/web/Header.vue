@@ -87,7 +87,7 @@ onMounted(() => {
               </li>
 
               <li>
-                <NuxtLink to="/dummy">Dummy</NuxtLink>
+                <NuxtLink to="/test">Test</NuxtLink>
               </li>
 
               <li>
@@ -116,7 +116,7 @@ onMounted(() => {
               </li>
 
               <li>
-                <Button href="/dummy" model="bg md rounded" color="primary" class="header-btn" title="ログイン" />
+                <Button href="/test" model="bg md rounded" color="primary" class="header-btn" title="ログイン" />
               </li>
             </ul>
           </nav>
