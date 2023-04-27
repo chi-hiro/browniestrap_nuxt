@@ -89,7 +89,7 @@
 //***********************************************************************
 //  Embed
 //***********************************************************************
-$embed-ratio: (1 1), (16 9), (21, 9), (4 3), (3 1), (2 1);
+$embed-ratio: (1 1), (16 9), (21, 9), (4 3), (3 1), (2 1), (9 16), (9, 21), (3 4), (1 2);
 
 .embed {
   display: block;
@@ -119,19 +119,13 @@ $embed-ratio: (1 1), (16 9), (21, 9), (4 3), (3 1), (2 1);
 @each $value in $embed-ratio {
   .embed-#{nth($value, 1)}by#{nth($value, 2)} {
     aspect-ratio: calc(nth($value, 1) / nth($value, 2));
-
-    &.portrait {
-      aspect-ratio: calc(nth($value, 2) / nth($value, 1));
-    }
   }
+}
 
+@each $value in $embed-ratio {
   @include breakpointUp {
     .lg\:embed-#{nth($value, 1)}by#{nth($value, 2)} {
       aspect-ratio: calc(nth($value, 1) / nth($value, 2));
-
-      &.portrait {
-        aspect-ratio: calc(nth($value, 2) / nth($value, 1));
-      }
     }
   }
 }

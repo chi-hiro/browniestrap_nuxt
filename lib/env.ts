@@ -19,6 +19,9 @@ export const env = (checkData: string) => {
     case 'touch':
       return 'ontouchstart' in window
 
+    case 'pwa':
+      return window.matchMedia('(display-mode: standalone)').matches
+
     case 'orientation':
       return window.innerWidth < window.innerHeight ? 'portrait' : 'landscape'
 

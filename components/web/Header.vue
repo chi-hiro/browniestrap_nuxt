@@ -121,12 +121,12 @@ onMounted(() => {
             </ul>
           </nav>
 
-          <span id="header-nav-overlay" v-if="state.isMobile" @click="state.showNav = false"></span>
+          <span id="header-nav-overlay" v-if="state.isMobile" @click="state.showNav = false" />
         </div>
       </transition>
 
       <button type="button" id="hamburger" @click="state.showNav = !state.showNav" v-if="state.isMobile">
-        <span id="hamburger-icon" :class="{ active: state.showNav }"></span>
+        <span id="hamburger-icon" :class="{ active: state.showNav }" />
       </button>
     </header>
   </transition>
