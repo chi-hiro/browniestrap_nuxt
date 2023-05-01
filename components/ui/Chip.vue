@@ -247,6 +247,7 @@ $chip-icon-lg: $icon-size * 1;
 
   &.badge {
     position: absolute;
+    z-index: 100;
     min-width: $icon-size;
     height: $icon-size;
     right: calc($icon-size / -3);

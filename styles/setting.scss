@@ -117,19 +117,22 @@ $zindex-loader: 9999;
 $input-border-radius: 8px;
 $input-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 $input-padding-x: 12px;
-$button-padding-x: 20px;
+$button-padding-x: 2rem;
 
 $input-height-md: 48px;
 $input-fontsize-md: 1rem;
 $input-padding-md: calc(($input-height-md - $icon-size) / 2 - $border-width);
+$button-padding-md: calc(($input-height-md - $icon-size) / 2);
 
 $input-height-sm: 40px;
 $input-fontsize-sm: 0.875rem;
 $input-padding-sm: calc(($input-height-sm - $icon-size) / 2 - $border-width);
+$button-padding-sm: calc(($input-height-sm - $icon-size) / 2);
 
 $input-height-lg: 56px;
 $input-fontsize-lg: 1.125rem;
 $input-padding-lg: calc(($input-height-lg - $icon-size) / 2 - $border-width);
+$button-padding-lg: calc(($input-height-lg - $icon-size) / 2);
 
 //*******************************************************************************
 // Easing

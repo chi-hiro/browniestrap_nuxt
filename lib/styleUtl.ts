@@ -8,6 +8,8 @@ const color = {
   warning: '#EAA930',
   danger: '#E13D3B',
   white: 'white',
+  'primary-secondary': 'linear-gradient(90deg, #6ED4BE, #D38A58)',
+  'secondary-primary': 'linear-gradient(-90deg, #6ED4BE, #D38A58)',
 }
 
 export const variables: { [key: string]: any } = {

@@ -45,30 +45,22 @@ const loaderColor = computed<string>(() => {
 })
 
 const textColor = computed<string>(() => {
-  if (props.color) {
-    if (props.color === 'default') {
-      return ''
-    } else if (props.model.includes('bg')) {
-      return props.color === 'white' ? variables.theme.bodyColor : 'white'
-    } else {
-      return variables.color[props.color]
-    }
+  if (!props.color || props.color === 'default') return ''
+
+  if (props.model.includes('bg')) {
+    return props.color === 'white' ? variables.theme.bodyColor : 'white'
   } else {
-    return ''
+    return variables.color[props.color]
   }
 })
 
 const bgColor = computed<string>(() => {
-  if (props.color) {
-    if (props.color === 'default') {
-      return ''
-    } else if (props.model.includes('border')) {
-      return variables.lightColor[props.color]
-    } else {
-      return variables.color[props.color]
-    }
+  if (!props.color || props.color === 'default') return ''
+
+  if (props.model.includes('border')) {
+    return variables.lightColor[props.color]
   } else {
-    return ''
+    return variables.color[props.color]
   }
 })
 </script>
@@ -159,8 +151,8 @@ $textColor: v-bind('textColor');
 $bgColor: v-bind('bgColor');
 
 @mixin blockIcon() {
-  padding-left: $button-padding-x + $icon-size;
-  padding-right: $button-padding-x + $icon-size;
+  padding-left: calc($button-padding-x + $icon-size);
+  padding-right: calc($button-padding-x + $icon-size);
 
   .icon {
     position: absolute;
@@ -211,7 +203,7 @@ $bgColor: v-bind('bgColor');
   @include textKerning;
 
   color: inherit;
-  border: $border-width solid transparent;
+  border: none;
   box-shadow: $input-box-shadow;
   @include rounded;
   @include transition((color, background, border, box-shadow));
@@ -222,17 +214,10 @@ $bgColor: v-bind('bgColor');
     background-color: $dark-color-muted-bg;
   }
 
-  @include focusMouse {
-    border-color: $color-border;
-    @include darkmode {
-      border-color: $dark-color-border;
-    }
-  }
-
   // Default size
   min-width: $input-height-md;
   font-size: $input-fontsize-md;
-  padding: $input-padding-md $button-padding-x;
+  padding: $button-padding-md $button-padding-x;
 
   &:active {
     transition: none;
@@ -274,11 +259,128 @@ $bgColor: v-bind('bgColor');
     margin-right: calc($button-padding-x / -2);
   }
 
+  // Color
+  &.bg {
+    &::after {
+      content: '';
+      position: absolute;
+      z-index: 5;
+      top: 2px;
+      bottom: 2px;
+      left: 2px;
+      right: 2px;
+      border: $border-width solid $color-border;
+      @include rounded;
+      @include transition(opacity);
+      opacity: 0;
+    }
+
+    @include focusMouse {
+      &::after {
+        opacity: 1;
+      }
+    }
+
+    &:not(.default) {
+      background: $bgColor;
+      color: $textColor;
+    }
+
+    &.default {
+      background-color: $color-headings;
+      color: $dark-color-body;
+      border-color: transparent;
+
+      @include darkmode {
+        background-color: $dark-color-headings;
+        color: $color-body;
+      }
+
+      @include focusMouse {
+        background-color: $color-link-hover;
+        color: white;
+        border-color: darken($color-link-hover, 20%);
+      }
+    }
+  }
+
+  &.border {
+    &::after {
+      content: '';
+      position: absolute;
+      z-index: 5;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      border: $border-width solid $textColor;
+      @include rounded;
+      @include transition(border);
+    }
+
+    &:not(.default) {
+      background-color: transparent;
+      color: $textColor;
+
+      @include focusMouse {
+        color: $textColor;
+        background-color: $bgColor;
+
+        &::after {
+          border-color: $textColor;
+        }
+      }
+    }
+
+    &.default {
+      background-color: transparent;
+      color: $color-body;
+
+      &::after {
+        border: $border-width solid $color-border;
+      }
+
+      @include darkmode {
+        background-color: transparent;
+        color: $dark-color-body;
+
+        &::after {
+          border-color: $dark-color-border;
+        }
+      }
+
+      @include focusMouse {
+        color: $color-link-hover;
+
+        &::after {
+          border-color: $color-link-hover;
+        }
+      }
+    }
+  }
+
+  &.link {
+    background-color: transparent;
+    color: $textColor;
+    border-color: transparent;
+    box-shadow: none !important;
+
+    @include focusMouse {
+      background-color: $color-muted-bg;
+      color: $textColor;
+      border-color: transparent;
+
+      @include darkmode {
+        background-color: $dark-color-muted-bg;
+      }
+    }
+  }
+
   // Model
   &.sm {
     min-width: $input-height-sm;
     font-size: $input-fontsize-sm;
-    padding: $input-padding-sm $button-padding-x;
+    padding: $button-padding-sm $button-padding-x;
 
     ::v-deep(.font-icon) {
       transform: scale(0.75);
@@ -288,11 +390,20 @@ $bgColor: v-bind('bgColor');
   &.lg {
     min-width: $input-height-lg;
     font-size: $input-fontsize-lg;
-    padding: $input-padding-lg $button-padding-x;
+    padding: $button-padding-lg $button-padding-x;
+  }
+
+  &.icon {
+    padding-left: 0;
+    padding-right: 0;
   }
 
   &.rounded {
     border-radius: 9999px;
+
+    &::after {
+      border-radius: 9999px;
+    }
   }
 
   &.block {
@@ -324,107 +435,6 @@ $bgColor: v-bind('bgColor');
   &.longDown {
     @include breakpointDown {
       @include longBtn;
-    }
-  }
-
-  &.icon {
-    padding-left: 0;
-    padding-right: 0;
-  }
-
-  &.switch {
-    display: inline-flex;
-    vertical-align: top;
-
-    > * {
-      flex: 0 0 auto;
-      border-radius: 0;
-
-      &:first-child {
-        @include roundedLeft;
-      }
-
-      &:last-child {
-        @include roundedRight;
-      }
-
-      &.active {
-        background-color: $color-link-hover;
-        color: white;
-      }
-    }
-  }
-
-  // Color
-  &.bg {
-    &:not(.default) {
-      background-color: $bgColor;
-      color: $textColor;
-    }
-
-    &.default {
-      background-color: $color-headings;
-      color: $dark-color-body;
-      border-color: transparent;
-
-      @include darkmode {
-        background-color: $dark-color-headings;
-        color: $color-body;
-      }
-
-      @include focusMouse {
-        background-color: $color-link-hover;
-        color: white;
-        border-color: darken($color-link-hover, 20%);
-      }
-    }
-  }
-
-  &.border {
-    &:not(.default) {
-      background-color: transparent;
-      color: $textColor;
-      border-color: $textColor;
-
-      @include focusMouse {
-        color: $textColor;
-        background-color: $bgColor;
-        border-color: $textColor;
-      }
-    }
-
-    &.default {
-      background-color: transparent;
-      color: $color-body;
-      border-color: $color-border;
-
-      @include darkmode {
-        background-color: transparent;
-        color: $dark-color-body;
-        border-color: $dark-color-border;
-      }
-
-      @include focusMouse {
-        color: $color-link-hover;
-        border-color: $color-link-hover;
-      }
-    }
-  }
-
-  &.link {
-    background-color: transparent;
-    color: $textColor;
-    border-color: transparent;
-    box-shadow: none !important;
-
-    @include focusMouse {
-      background-color: $color-muted-bg;
-      color: $textColor;
-      border-color: transparent;
-
-      @include darkmode {
-        background-color: $dark-color-muted-bg;
-      }
     }
   }
 }

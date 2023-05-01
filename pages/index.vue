@@ -396,7 +396,7 @@ const scrollModal = ref<InstanceType<typeof Modal>>()
       <h2 class="section-heading">Button</h2>
 
       <h3 class="section-heading-sm">Bg</h3>
-      <div class="flex flex-wrap gap-0.5">
+      <div class="flex flex-wrap gap-0.5 p-1 bg-muted">
         <Button model="bg md blockDown rounded" color="primary" title="Primary" />
         <Button model="bg md blockDown rounded" color="secondary" title="Secondary" />
         <Button model="bg md blockDown rounded" color="success" title="Success" />
@@ -405,10 +405,12 @@ const scrollModal = ref<InstanceType<typeof Modal>>()
         <Button model="bg md blockDown rounded" color="danger" title="Danger" />
         <Button model="bg md blockDown rounded" color="white" title="White" />
         <Button model="bg md blockDown rounded" color="default" title="Default" />
+        <Button model="bg md blockDown rounded" color="primary-secondary" title="Primary-Secondary" />
+        <Button model="bg md blockDown rounded" color="secondary-primary" title="Secondary-Primary" />
       </div>
 
       <h3 class="section-heading-sm">Border</h3>
-      <div class="flex flex-wrap gap-0.5">
+      <div class="flex flex-wrap gap-0.5 p-1 bg-muted">
         <Button model="border md blockDown rounded" color="primary" title="Primary" />
         <Button model="border md blockDown rounded" color="secondary" title="Secondary" />
         <Button model="border md blockDown rounded" color="success" title="Success" />

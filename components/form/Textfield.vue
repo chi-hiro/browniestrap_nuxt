@@ -108,10 +108,8 @@ onMounted(() => {
 })
 
 watchEffect(() => {
-  if (props.modelValue) {
-    state.value = props.modelValue
-    update(props.modelValue)
-  }
+  state.value = props.modelValue
+  update(props.modelValue || '')
 })
 </script>
 
@@ -234,6 +232,7 @@ $feedbackColor: v-bind('feedbackColor');
 
 .textfield {
   position: relative;
+  align-self: flex-start;
 
   .font-icon {
     transform: scale(0.75);
@@ -295,7 +294,7 @@ $feedbackColor: v-bind('feedbackColor');
       background-color: $feedbackColor;
       position: absolute;
       z-index: 10;
-      bottom: calc($icon-size / 2);
+      bottom: calc($icon-size / -2);
       left: 0;
       max-width: 80%;
       min-height: $icon-size;
