@@ -75,14 +75,6 @@ const getMockApi = async () => {
   if (data.value) state.form = data.value
 }
 
-const postMockApi = async () => {
-  const { data } = await useFetch('/api/apiid/post', { method: 'POST', body: state.form })
-  if (data.value === 'success') {
-    toast('success', 'セーブが完了しました')
-    getMockApi()
-  }
-}
-
 onMounted(() => {
   getMockApi()
 })
@@ -108,8 +100,6 @@ onMounted(() => {
         />
 
         <Textfield name="remarks" type="textarea" label="備考" v-model="state.form.remarks" :maxlength="100" />
-
-        <Button model="bg" color="primary" @click="postMockApi" title="SAVE" />
       </div>
     </div>
   </section>
