@@ -1,3 +1,4 @@
+/*
 import * as openapi from '@/openapi'
 
 export default defineNuxtPlugin(() => {
@@ -21,3 +22,4 @@ export default defineNuxtPlugin(() => {
     },
   }
 })
+*/
