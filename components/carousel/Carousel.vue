@@ -788,7 +788,7 @@ watch(
         position: absolute;
         left: 0;
         top: 0;
-        botom: 0;
+        bottom: 0;
         width: 56px;
         height: 100%;
       }
