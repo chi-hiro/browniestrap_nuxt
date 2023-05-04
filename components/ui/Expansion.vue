@@ -80,9 +80,11 @@ watch(
   () => state.isShow,
   (newValue) => {
     if (props.model === 'popup') {
-      newValue
-        ? window.setTimeout(() => document.body.addEventListener('click', hide), 300)
-        : document.body.removeEventListener('click', hide)
+      nextTick(() => {
+        newValue
+          ? window.setTimeout(() => document.body.addEventListener('click', hide), 300)
+          : document.body.removeEventListener('click', hide)
+      })
     }
   }
 )

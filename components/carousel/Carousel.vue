@@ -255,8 +255,10 @@ watch(
   (newValue) => {
     if (newValue) {
       if (props.duration) {
-        inScreen()
-        window.addEventListener('scroll', inScreen)
+        nextTick(() => {
+          inScreen()
+          window.addEventListener('scroll', inScreen)
+        })
       }
       if (el.value && !el.value.classList.contains('reveal-active')) {
         el.value.classList.add('reveal-active')
