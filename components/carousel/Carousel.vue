@@ -264,9 +264,11 @@ watchEffect(() => {
       el.value.classList.add('reveal-active')
     }
   } else {
-    if (props.duration) {
-      window.removeEventListener('scroll', inScreen)
-    }
+    nextTick(() => {
+      if (props.duration) {
+        window.removeEventListener('scroll', inScreen)
+      }
+    })
   }
 })
 
