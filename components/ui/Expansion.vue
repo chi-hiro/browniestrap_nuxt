@@ -76,15 +76,16 @@ const expansionIcon = computed<string>(() => {
   }
 })
 
-watchEffect(() => {
-  nextTick(() => {
+watch(
+  () => state.isShow,
+  (newValue) => {
     if (props.model === 'popup') {
-      state.isShow
+      newValue
         ? window.setTimeout(() => document.body.addEventListener('click', hide), 300)
         : document.body.removeEventListener('click', hide)
     }
-  })
-})
+  }
+)
 </script>
 
 <template>

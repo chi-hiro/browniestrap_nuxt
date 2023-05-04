@@ -3,9 +3,9 @@ import { pageback, pagetop } from '@/lib/mixins'
 import { toast } from '@/lib/toast'
 import { openViewer } from '@/lib/viewer'
 
-// import Visual from '@/components/web/Visual.vue'
+import Visual from '@/components/web/Visual.vue'
 import Headline from '@/components/web/Headline.vue'
-// import Carousel from '@/components/carousel/Carousel.vue'
+import Carousel from '@/components/carousel/Carousel.vue'
 
 import Button from '@/components/ui/Button.vue'
 import Card from '@/components/ui/Card.vue'
@@ -35,10 +35,10 @@ const scrollModal = ref<InstanceType<typeof Modal>>()
 </script>
 
 <template>
-  <!--<Visual>
+  <Visual>
     <h1 class="title">LEAD SAMPLE</h1>
     <p class="description">DESCRIPTION SAMPLE</p>
-  </Visual>-->
+  </Visual>
 
   <section id="section_type" class="section border-t reveal">
     <div class="container">
@@ -156,7 +156,7 @@ const scrollModal = ref<InstanceType<typeof Modal>>()
     </div>
   </section>
 
-  <!--<section id="section_carousel" class="section border-t reveal">
+  <section id="section_carousel" class="section border-t reveal">
     <div class="container">
       <h2 class="section-heading">Carousel</h2>
     </div>
@@ -190,7 +190,7 @@ const scrollModal = ref<InstanceType<typeof Modal>>()
         ]"
       />
     </div>
-  </section>-->
+  </section>
 
   <section id="section_card" class="section section-bg-even border-t reveal">
     <div class="container">

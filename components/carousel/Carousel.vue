@@ -154,7 +154,10 @@ const scrollbar = ref<InstanceType<typeof CarouselScrollbar> | null>(null)
 //*******************************************************************************
 // Methods: Swiper
 //*******************************************************************************
-const onSwiper = (swiper: any) => (state.mySwiper = swiper)
+const onSwiper = (swiper: any) => {
+  state.mySwiper = swiper
+  updateScrollbar()
+}
 
 const toggleResponsive = (newIsMobile: boolean) => {
   if (state.isMobile !== newIsMobile) {
@@ -247,32 +250,24 @@ onMounted(() => {
   }
 })
 
-watchEffect(() => {
-  if (state.mySwiper !== null) {
-    nextTick(() => updateScrollbar())
-  }
-})
-
-watchEffect(() => {
-  if (state.isShow) {
-    nextTick(() => {
+watch(
+  () => state.isShow,
+  (newValue) => {
+    if (newValue) {
       if (props.duration) {
         inScreen()
         window.addEventListener('scroll', inScreen)
       }
-    })
-
-    if (el.value && !el.value.classList.contains('reveal-active')) {
-      el.value.classList.add('reveal-active')
-    }
-  } else {
-    nextTick(() => {
+      if (el.value && !el.value.classList.contains('reveal-active')) {
+        el.value.classList.add('reveal-active')
+      }
+    } else {
       if (props.duration) {
         window.removeEventListener('scroll', inScreen)
       }
-    })
+    }
   }
-})
+)
 
 watch(
   () => state.showcase.activeItem,

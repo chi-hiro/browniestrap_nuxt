@@ -79,10 +79,11 @@ const dragMove = (value: number) => {
 //*******************************************************************************
 // Hooks
 //*******************************************************************************
-watchEffect(() => {
-  nextTick(() => {
+watch(
+  () => state.isDrag,
+  (newValue) => {
     if (!env('touch')) {
-      if (state.isDrag) {
+      if (newValue) {
         document.addEventListener('mouseup', handleUp)
         document.addEventListener('mousemove', handleMove)
       } else {
@@ -90,8 +91,8 @@ watchEffect(() => {
         document.removeEventListener('mousemove', handleMove)
       }
     }
-  })
-})
+  }
+)
 
 defineExpose({
   updateScrollbar,
