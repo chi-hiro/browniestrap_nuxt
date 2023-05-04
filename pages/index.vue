@@ -11,7 +11,7 @@ import Button from '@/components/ui/Button.vue'
 import Card from '@/components/ui/Card.vue'
 import Chip from '@/components/ui/Chip.vue'
 import Divider from '@/components/ui/Divider.vue'
-// import Expansion from '@/components/ui/Expansion.vue'
+import Expansion from '@/components/ui/Expansion.vue'
 import Icon from '@/components/ui/Icon.vue'
 import Loader from '@/components/ui/Loader.vue'
 import Modal from '@/components/ui/Modal.vue'
@@ -765,7 +765,7 @@ const scrollModal = ref<InstanceType<typeof Modal>>()
     </div>
   </section>
 
-  <!--<section id="section_expansion" class="section border-t">
+  <section id="section_expansion" class="section border-t">
     <div class="container">
       <h2 class="section-heading">Expansion</h2>
 
@@ -818,7 +818,7 @@ const scrollModal = ref<InstanceType<typeof Modal>>()
         </Expansion>
       </div>
     </div>
-  </section>-->
+  </section>
 
   <section id="section_viewer" class="section border-t">
     <div class="container">

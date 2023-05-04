@@ -12,7 +12,7 @@ export default defineEventHandler(async (event) => {
     } else {
       newDB.push(body)
     }
-    fs.writeFileSync('./server/api/apiid/db.json', JSON.stringify(newDB))
+    fs.writeFileSync('/tmp/apiid/db.json', JSON.stringify(newDB))
   } catch (error) {
     return 'error'
   }
