@@ -101,8 +101,8 @@ defineExpose({
   <div
     ref="el"
     class="carousel-scrollbar"
-    @touchstart="handleDown"
-    @touchmove="handleMove"
+    @touchstart.passive="handleDown"
+    @touchmove.passive="handleMove"
     @touchend="handleUp"
     @touchleave="handleUp"
     @mousedown="handleDown"

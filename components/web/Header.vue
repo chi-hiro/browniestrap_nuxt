@@ -64,7 +64,7 @@ onMounted(() => {
             src="/img/logo.webp"
             width="585"
             height="48"
-            :alt="runtimeConfig.appTitle"
+            :alt="runtimeConfig.public.appTitle"
             class="hidden-dark"
             loading="lazy"
           />
@@ -72,7 +72,7 @@ onMounted(() => {
             src="/img/logo-wt.webp"
             width="585"
             height="48"
-            :alt="runtimeConfig.appTitle"
+            :alt="runtimeConfig.public.appTitle"
             class="hidden-light"
             loading="lazy"
           />

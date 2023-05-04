@@ -8,8 +8,8 @@ export default defineNuxtConfig({
     },
   },
   runtimeConfig: {
-    appTitle: 'Browniestrap',
     public: {
+      appTitle: 'Browniestrap',
       apiBaseUrl: 'https://petstore.swagger.io/v2',
     },
   },

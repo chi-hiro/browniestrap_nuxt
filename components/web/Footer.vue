@@ -10,7 +10,7 @@ const runtimeConfig = useRuntimeConfig()
           src="/img/logo.webp"
           width="585"
           height="48"
-          :alt="runtimeConfig.appTitle"
+          :alt="runtimeConfig.public.appTitle"
           class="hidden-dark"
           loading="lazy"
         />
@@ -18,7 +18,7 @@ const runtimeConfig = useRuntimeConfig()
           src="/img/logo-wt.webp"
           width="585"
           height="48"
-          :alt="runtimeConfig.appTitle"
+          :alt="runtimeConfig.public.appTitle"
           class="hidden-light"
           loading="lazy"
         />
@@ -29,7 +29,7 @@ const runtimeConfig = useRuntimeConfig()
         </address>
       </div>
 
-      <small class="copyright">© {{ new Date().getFullYear() }} {{ runtimeConfig.appTitle }}</small>
+      <small class="copyright">© {{ new Date().getFullYear() }} {{ runtimeConfig.public.appTitle }}</small>
     </div>
   </footer>
 </template>

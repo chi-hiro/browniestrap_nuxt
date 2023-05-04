@@ -195,8 +195,8 @@ onMounted(() => {
             transition: state.isTransition,
             single: state.total === 1,
           }"
-          @touchstart="handleDown"
-          @touchmove="handleMove"
+          @touchstart.passive="handleDown"
+          @touchmove.passive="handleMove"
           @touchend="handleUp"
           @touchleave="handleUp"
           @mousedown="handleDown"

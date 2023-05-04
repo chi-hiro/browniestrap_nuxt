@@ -165,6 +165,7 @@ watchEffect(() => {
       :class="inputClass"
       :type="props.type ? (props.type === 'password' ? state.passType : props.type) : 'text'"
       :name="props.name"
+      :autocomplete="props.name"
       :id="`textfield-${props.name}`"
       :placeholder="props.placeholder"
       :required="props.required"
