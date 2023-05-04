@@ -2,12 +2,10 @@
   "name": "browniestrap_nuxt",
   "private": true,
   "scripts": {
-    "build": "nuxt build",
     "dev": "nuxt dev",
     "generate": "nuxt generate",
-    "preview": "nuxt preview",
-    "postinstall": "nuxt prepare",
-    "openapi-generate": "docker run --rm -v ${PWD}/openapi:/out openapitools/openapi-generator-cli:v6.0.1 generate --generator-name typescript-fetch --input-spec https://raw.githubusercontent.com/openapitools/openapi-generator/master/modules/openapi-generator/src/test/resources/3_0/petstore.yaml --output /out --api-package api --model-package model --generate-alias-as-model --additional-properties supportsES6=true --additional-properties withInterfaces=true --additional-properties withSeparateModelsAndApi=true"
+    "openapi-generate": "docker run --rm -v ${PWD}/openapi:/out openapitools/openapi-generator-cli:v6.0.1 generate --generator-name typescript-fetch --input-spec https://raw.githubusercontent.com/openapitools/openapi-generator/master/modules/openapi-generator/src/test/resources/3_0/petstore.yaml --output /out --api-package api --model-package model --generate-alias-as-model --additional-properties supportsES6=true --additional-properties withInterfaces=true --additional-properties withSeparateModelsAndApi=true",
+    "vercel-deploy": "npm run openapi-generate && nuxt generate"
   },
   "devDependencies": {
     "@nuxtjs/eslint-config-typescript": "^12.0.0",
