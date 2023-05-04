@@ -31,7 +31,7 @@ type stateType = {
 }
 
 const state: stateType = reactive({
-  isMobile: env('mobile'),
+  isMobile: true,
   sidebar: {
     content: [],
     mode: 'static',
@@ -99,6 +99,7 @@ const toggleSidebarMode = () => {
 onMounted(() => {
   createSidebarMenu()
   toggleSidebarMode()
+  state.isMobile = env('mobile')
   env('mediaquery').addEventListener('change', (event: MediaQueryListEvent) => toggleResponsive(!event.matches))
   window.addEventListener('scroll', toggleSidebarMode)
 })

@@ -51,11 +51,13 @@ const hideHover = () => {
   if (props.hover) hide()
 }
 
-const beforeEnter = (e: HTMLElement) => (e.style.height = '0')
-const enter = (e: HTMLElement) => (e.style.height = e.scrollHeight + 'px')
-const afterEnter = (e: HTMLElement) => (e.style.height = '')
-const beforeLeave = (e: HTMLElement) => (e.style.height = e.scrollHeight + 'px')
-const leave = (e: HTMLElement) => (e.style.height = '0')
+const beforeEnter: (el: Element) => void = (el) => ((el as HTMLDivElement).style.height = '0')
+const enter: (el: Element) => void = (el) =>
+  ((el as HTMLDivElement).style.height = (el as HTMLDivElement).scrollHeight + 'px')
+const afterEnter: (el: Element) => void = (el) => ((el as HTMLDivElement).style.height = '')
+const beforeLeave: (el: Element) => void = (el) =>
+  ((el as HTMLDivElement).style.height = (el as HTMLDivElement).scrollHeight + 'px')
+const leave: (el: Element) => void = (el) => ((el as HTMLDivElement).style.height = '0')
 
 //*******************************************************************************
 // Hooks

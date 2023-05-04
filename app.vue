@@ -8,7 +8,7 @@ import { reveal } from '@/lib/reveal'
 const state = reactive<{
   viewport: string
 }>({
-  viewport: env('viewport'),
+  viewport: '',
 })
 
 useHead({
