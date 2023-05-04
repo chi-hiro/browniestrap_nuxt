@@ -248,7 +248,9 @@ onMounted(() => {
 })
 
 watchEffect(() => {
-  state.mySwiper !== null && updateScrollbar()
+  if (state.mySwiper !== null) {
+    nextTick(() => updateScrollbar())
+  }
 })
 
 watchEffect(() => {

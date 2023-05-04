@@ -80,15 +80,17 @@ const dragMove = (value: number) => {
 // Hooks
 //*******************************************************************************
 watchEffect(() => {
-  if (!env('touch')) {
-    if (state.isDrag) {
-      document.addEventListener('mouseup', handleUp)
-      document.addEventListener('mousemove', handleMove)
-    } else {
-      document.removeEventListener('mouseup', handleUp)
-      document.removeEventListener('mousemove', handleMove)
+  nextTick(() => {
+    if (!env('touch')) {
+      if (state.isDrag) {
+        document.addEventListener('mouseup', handleUp)
+        document.addEventListener('mousemove', handleMove)
+      } else {
+        document.removeEventListener('mouseup', handleUp)
+        document.removeEventListener('mousemove', handleMove)
+      }
     }
-  }
+  })
 })
 
 defineExpose({

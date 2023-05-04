@@ -83,9 +83,7 @@ const postMockApi = async () => {
   }
 }
 
-onMounted(() => {
-  getMockApi()
-})
+getMockApi()
 </script>
 
 <template>

@@ -109,7 +109,7 @@ onMounted(() => {
 
 watchEffect(() => {
   state.value = props.modelValue
-  update(props.modelValue || '')
+  nextTick(() => update(props.modelValue || ''))
 })
 </script>
 
