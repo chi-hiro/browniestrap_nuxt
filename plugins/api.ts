@@ -1,4 +1,4 @@
-import * as openapi from '@/openapi'
+import * as openapi from '../openapi'
 
 export default defineNuxtPlugin(() => {
   const runtimeConfig = useRuntimeConfig()
