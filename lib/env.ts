@@ -1,6 +1,8 @@
 import { variables } from '@/lib/styleUtl'
 
 export const env = (checkData: string) => {
+  if (!process.client) return ''
+
   const ua = window.navigator.userAgent.toLowerCase()
 
   switch (checkData) {

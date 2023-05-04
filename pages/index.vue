@@ -5,7 +5,6 @@ import { openViewer } from '@/lib/viewer'
 
 import Visual from '@/components/web/Visual.vue'
 import Headline from '@/components/web/Headline.vue'
-import EcSample from '@/components/web/EcSample.vue'
 import Carousel from '@/components/carousel/Carousel.vue'
 
 import Button from '@/components/ui/Button.vue'
@@ -108,8 +107,6 @@ const scrollModal = ref<InstanceType<typeof Modal>>()
       style="background-image: url(/dummy/dummy2.webp)"
     ></span>
   </section>
-
-  <EcSample />
 
   <section class="section-grid border-t reveal">
     <div class="grid lg:grid-cols-2 reveal-group">

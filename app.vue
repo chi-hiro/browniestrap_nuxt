@@ -28,7 +28,7 @@ const setLayout = () => {
 onMounted(() => {
   window.addEventListener('orientationchange', setLayout)
   env('mediaquery').addEventListener('change', setLayout)
-  reveal()
+  nextTick(() => reveal())
 })
 </script>
 

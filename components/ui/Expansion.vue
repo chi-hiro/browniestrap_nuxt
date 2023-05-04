@@ -25,12 +25,7 @@ const el = ref<HTMLDivElement | null>(null)
 //*******************************************************************************
 const toggle = (e: Event) => {
   const target = e.currentTarget as HTMLElement
-
-  if (!props.href) {
-    target.blur()
-  } else {
-    window.location.href = props.href
-  }
+  target.blur()
 
   if (!props.locked) state.isShow = !state.isShow
 }

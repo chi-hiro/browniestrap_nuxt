@@ -6,9 +6,11 @@ export const elementInScreen = (target: HTMLElement) => {
 }
 
 export const elementShowPos = (target: HTMLElement) => {
+  if (!process.client) return 0
   return window.pageYOffset + target.getBoundingClientRect().top - window.innerHeight
 }
 
 export const elementHidePos = (target: HTMLElement) => {
+  if (!process.client) return 0
   return window.pageYOffset + target.getBoundingClientRect().top + target.offsetHeight
 }
