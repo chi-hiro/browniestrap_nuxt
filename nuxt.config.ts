@@ -1,5 +1,5 @@
 export default defineNuxtConfig({
-  ssr: false,
+  ssr: true,
   css: ['@/styles/app.scss'],
   postcss: {
     plugins: {
