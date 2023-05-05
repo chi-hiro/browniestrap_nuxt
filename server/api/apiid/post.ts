@@ -6,16 +6,16 @@ export default defineEventHandler(async (event) => {
   const newDB = db
   const index = db.map((item) => item.id).indexOf(body.id)
 
-  try {
-    if (index > -1) {
-      newDB[index] = body
-    } else {
-      newDB.push(body)
-    }
-    fs.writeFileSync('/db/apiid.json', JSON.stringify(newDB))
-  } catch (error) {
-    return 'error'
+  if (index > -1) {
+    newDB[index] = body
+  } else {
+    newDB.push(body)
   }
 
-  return 'success'
+  try {
+    fs.writeFileSync('/db/apiid.json', JSON.stringify(newDB))
+    return 'success'
+  } catch (error) {
+    return error
+  }
 })
