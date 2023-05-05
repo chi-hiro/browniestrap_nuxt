@@ -1,4 +1,4 @@
-import db from './db.json'
+import db from '@/public/db/apiid.json'
 import fs from 'fs'
 
 export default defineEventHandler(async (event) => {
@@ -12,7 +12,7 @@ export default defineEventHandler(async (event) => {
     } else {
       newDB.push(body)
     }
-    fs.writeFileSync('/tmp/apiid/db.json', JSON.stringify(newDB))
+    fs.writeFileSync('/db/apiid.json', JSON.stringify(newDB))
   } catch (error) {
     return 'error'
   }

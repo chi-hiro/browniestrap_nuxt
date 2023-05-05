@@ -2,7 +2,7 @@
 import Button from '@/components/ui/Button.vue'
 import Textfield from '@/components/form/Textfield.vue'
 import { toast } from '@/lib/toast'
-// import { PlaceOrderRequest } from '@/openapi'
+import { PlaceOrderRequest } from '@/openapi'
 
 const state = reactive<{
   form: {
@@ -20,7 +20,6 @@ const state = reactive<{
   },
 })
 
-/* openapi
 const { $api } = useNuxtApp()
 
 const getTest = () => {
@@ -68,7 +67,6 @@ const loginTest = () => {
       console.log(error)
     })
 }
-*/
 
 const getMockApi = async () => {
   const { data } = await useFetch(`/api/apiid/1`)
@@ -90,6 +88,18 @@ getMockApi()
 </script>
 
 <template>
+  <section class="section">
+    <div class="container">
+      <h2 class="section-heading">OpenApi test</h2>
+
+      <div class="flex gap-0.5">
+        <Button model="bg" color="primary" @click="getTest" title="GET" />
+        <Button model="bg" color="primary" @click="postTest" title="POST" />
+        <Button model="bg" color="primary" @click="loginTest" title="LOGIN" />
+      </div>
+    </div>
+  </section>
+
   <section class="section">
     <div class="container">
       <h2 class="section-heading">MockApi test</h2>
