@@ -30,7 +30,7 @@ const buttonClass = computed<string>(() => {
   props.model && arr.push(props.model)
   props.loading && arr.push('connecting')
   props.disabled && arr.push('disabled')
-  props.color === 'default' && arr.push('default')
+  arr.push(props.color || 'default')
   return arr.join(' ')
 })
 
@@ -338,6 +338,12 @@ $bgColor: v-bind('bgColor');
       @include focusMouse {
         background-color: $textColor;
         color: white;
+      }
+    }
+
+    &.white {
+      @include focusMouse {
+        color: $color-body;
       }
     }
 
