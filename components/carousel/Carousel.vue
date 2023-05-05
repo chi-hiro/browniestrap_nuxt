@@ -42,7 +42,7 @@ const state = reactive<{
     viewerGroup: string
   }
 }>({
-  isMobile: true,
+  isMobile: env('mobile'),
   isShow: false,
   beforeW: 0,
 
@@ -232,7 +232,6 @@ const carouselStyle = computed<{ [key: string]: string | undefined }>(() => {
 
 onMounted(() => {
   state.isShow = true
-  state.isMobile = env('mobile')
   env('mediaquery').addEventListener('change', (event: MediaQueryListEvent) => toggleResponsive(!event.matches))
   if (props.model === 'showcase' && props.id) {
     state.showcase.activeItem = props.src[0].url!

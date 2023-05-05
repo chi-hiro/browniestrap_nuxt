@@ -12,7 +12,7 @@ const runtimeConfig = useRuntimeConfig()
 // Variables
 //*******************************************************************************
 const state = reactive({
-  isMobile: true,
+  isMobile: env('mobile'),
   isShow: true,
   showBg: false,
   showNav: false,
@@ -49,7 +49,6 @@ const clickLogo = (e: Event) => {
 // Hooks
 //*******************************************************************************
 onMounted(() => {
-  state.isMobile = env('mobile')
   window.setTimeout(() => window.addEventListener('scroll', scrollToggle), 1000)
   env('mediaquery').addEventListener('change', (event: MediaQueryListEvent) => (state.isMobile = !event.matches))
 })
