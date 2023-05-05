@@ -217,17 +217,16 @@ defineExpose({
 
 .modal-inner {
   position: relative;
+  overflow: hidden;
   z-index: 2;
   width: 90vw;
   max-width: calc(500px + 2rem + 2rem);
+  background-color: $color-body-bg;
   box-shadow: $shadow-light;
+  @include rounded;
 
-  > *:first-child {
-    @include roundedTop;
-  }
-
-  > *:last-child {
-    @include roundedBottom;
+  @include darkmode {
+    background-color: $dark-color-body-bg;
   }
 
   .modal-enter-active & {
@@ -298,16 +297,11 @@ defineExpose({
 .modal-body {
   width: 100%;
   max-height: 45vh;
-  background-color: $color-body-bg;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   font-size: 1rem;
-
-  @include darkmode {
-    background-color: $dark-color-body-bg;
-  }
 
   &.scroll {
     display: block;
@@ -371,61 +365,24 @@ defineExpose({
 
 .modal-footer {
   width: 100%;
-  background-color: $color-body-bg;
+  background-color: $color-muted-bg;
   border-top: 1px solid $color-border;
 
   display: flex;
   justify-content: center;
   align-items: center;
-
-  @include darkmode {
-    background-color: $dark-color-body-bg;
-    border-color: $dark-color-border;
-  }
-
-  ::v-deep(button) {
-    @include buttonReset;
-  }
+  gap: 0.5rem;
+  padding: 1rem;
 
   ::v-deep(a),
   ::v-deep(button) {
     flex: 0 1 100%;
-    user-select: none;
-    cursor: pointer;
-    width: 100%;
+    max-width: 50%;
+  }
 
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    padding: 1.25rem 0.5rem;
-
-    font-size: $input-fontsize-md;
-    font-weight: bold;
-    text-align: center;
-    text-decoration: none;
-    white-space: nowrap;
-    vertical-align: top;
-    line-height: 1;
-    @include textKerning;
-
-    &:not(:only-child):not(:last-child) {
-      border-right: 1px solid $color-border;
-
-      @include darkmode {
-        border-color: $dark-color-border;
-      }
-    }
-
-    @include transition((background, color));
-
-    @include hoverMouse {
-      background-color: $color-muted-bg;
-
-      @include darkmode {
-        background-color: $dark-color-muted-bg;
-      }
-    }
+  @include darkmode {
+    background-color: $dark-color-muted-bg;
+    border-color: $dark-color-border;
   }
 }
 </style>

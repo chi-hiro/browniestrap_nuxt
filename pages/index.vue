@@ -921,8 +921,8 @@ const scrollModal = ref<InstanceType<typeof Modal>>()
           </template>
 
           <template #footer>
-            <button type="button" @click="basicModal?.hide()">とじる</button>
-            <button type="button" class="text-primary" @click="scrollModal?.show($event)">つぎへ</button>
+            <Button model="md border block" title="CLOSE" @click="basicModal?.hide()" />
+            <Button model="md bg block" color="primary" title="NEXT" @click="scrollModal?.show($event)" />
           </template>
         </Modal>
 
