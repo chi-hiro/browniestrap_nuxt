@@ -331,7 +331,7 @@ defineExpose({
       padding: 2rem;
     }
 
-    > *:last-child {
+    ::v-deep(> *:last-child) {
       margin-bottom: 0;
     }
   }
