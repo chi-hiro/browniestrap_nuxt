@@ -41,7 +41,7 @@ export const variables: { [key: string]: any } = {
     headingsColor: '#101010',
     mutedColor: 'rgba(0,0,0,0.4)',
     borderColor: 'rgba(0,0,0,0.1)',
-    inputBorderColor: 'rgba(0,0,0,0.15)',
+    inputBorderColor: 'rgba(0,0,0,0.2)',
     bodyBg: '#FFFFFF',
     mutedBg: 'rgba(0,0,0,0.03)',
     overlayBg: 'rgba(0,0,0,0.3)',
@@ -53,7 +53,7 @@ export const variables: { [key: string]: any } = {
     headingsColor: '#FFFFFF',
     mutedColor: 'rgba(255,255,255,0.4)',
     borderColor: 'rgba(255,255,255,0.1)',
-    inputBorderColor: 'rgba(255,255,255,0.15)',
+    inputBorderColor: 'rgba(255,255,255,0.2)',
     bodyBg: '#202020',
     mutedBg: 'rgba(255,255,255,0.03)',
     overlayBg: 'rgba(0,0,0,0.3)',
@@ -66,7 +66,7 @@ export const variables: { [key: string]: any } = {
     },
 
     sm: {
-      height: 40,
+      height: 32,
     },
 
     lg: {

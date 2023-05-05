@@ -95,12 +95,10 @@ $colorVariant: v-bind('colorVariant');
     background-color: $colorVariant;
 
     @include focusMouse {
-      border-color: rgba(0, 0, 0, 0.3);
-    }
+      border-color: $color-input-border;
 
-    @include darkmode {
-      @include focusMouse {
-        border-color: white;
+      @include darkmode {
+        border-color: $dark-color-input-border;
       }
     }
 

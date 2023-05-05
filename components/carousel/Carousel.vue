@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { Swiper, SwiperSlide } from 'swiper/vue'
-import { Autoplay, EffectFade, Navigation, Pagination, Lazy } from 'swiper'
+import { Autoplay, EffectFade, Navigation, Pagination } from 'swiper'
 import { env } from '@/lib/env'
 import { elementInScreen } from '@/lib/elementInScreen'
 import { openViewerManual } from '@/lib/viewer'
@@ -34,7 +34,6 @@ const state = reactive<{
   beforeW: number
   mySwiper: any
   isPause: boolean
-  lazyLoading: boolean
   swiperOption: { [key: string]: any }
   timerProgress: number
   showcase: {
@@ -49,7 +48,6 @@ const state = reactive<{
 
   mySwiper: null,
   isPause: false,
-  lazyLoading: false,
 
   swiperOption: {
     loop: true,
@@ -61,11 +59,6 @@ const state = reactive<{
     grabCursor: true,
     watchOverflow: true,
     preloadImages: false,
-    lazy: {
-      checkInView: true,
-      loadPrevNext: true,
-      loadPrevNextAmount: 1,
-    },
     navigation: false,
     pagination: false,
     observer: true,
@@ -106,8 +99,8 @@ switch (props.model) {
   case 'slide':
     state.swiperOption.speed = 600
     state.swiperOption.slidesPerView = 1.2
+    state.swiperOption.loop = false
     state.swiperOption.centeredSlides = true
-    state.swiperOption.lazy.loadPrevNextAmount = 2
     state.swiperOption.spaceBetween = 20
     state.swiperOption.breakpoints = {
       1024: {
@@ -140,9 +133,6 @@ switch (props.model) {
         direction: 'vertical',
         slidesPerView: 'auto',
         pagination: false,
-        lazy: {
-          loadPrevNextAmount: 10,
-        },
       },
     }
     break
@@ -287,7 +277,7 @@ watch(
   <div ref="el" :class="carouselClass" :style="carouselStyle">
     <Swiper
       v-if="state.isShow"
-      :modules="[Autoplay, EffectFade, Navigation, Pagination, Lazy]"
+      :modules="[Autoplay, EffectFade, Navigation, Pagination]"
       :loop="state.swiperOption.loop"
       :speed="state.swiperOption.speed"
       :effect="state.swiperOption.effect"
@@ -297,7 +287,6 @@ watch(
       :slidesPerView="state.swiperOption.slidesPerView"
       :spaceBetween="state.swiperOption.spaceBetween"
       :autoplay="state.swiperOption.autoplay"
-      :lazy="state.swiperOption.lazy"
       :navigation="state.swiperOption.navigation"
       :pagination="state.swiperOption.pagination"
       :grabCursor="false"
@@ -306,8 +295,6 @@ watch(
       @sliderMove="dragMove"
       @transitionStart="changeStart"
       @transitionEnd="changeEnd"
-      @lazyImageLoad="state.lazyLoading = true"
-      @lazyImageReady="state.lazyLoading = false"
     >
       <SwiperSlide v-for="(item, index) in props.src" :key="`carousel-item${String(index)}`">
         <a
@@ -331,13 +318,7 @@ watch(
         />
       </SwiperSlide>
 
-      <Loader
-        v-if="props.timer"
-        model="circle"
-        color="white"
-        :class="['carousel-loader', { hide: state.lazyLoading }]"
-        :progress="state.timerProgress"
-      />
+      <Loader v-if="props.timer" model="circle" color="white" class="carousel-loader" :progress="state.timerProgress" />
     </Swiper>
 
     <a
@@ -366,7 +347,6 @@ watch(
 @use 'swiper/scss';
 @use 'swiper/scss/effect-fade';
 @use 'swiper/scss/pagination';
-@use 'swiper/scss/lazy';
 
 @keyframes carousel_timer_waiting {
   0% {
@@ -411,17 +391,6 @@ watch(
         text-decoration: none;
         outline: none;
       }
-    }
-  }
-
-  .swiper-lazy {
-    opacity: 0;
-    filter: blur(10px);
-    transition: opacity 400ms linear, filter 400ms linear;
-
-    &.swiper-lazy-loaded {
-      opacity: 1;
-      filter: none;
     }
   }
 

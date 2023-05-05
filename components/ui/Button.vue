@@ -208,6 +208,20 @@ $bgColor: v-bind('bgColor');
   @include rounded;
   @include transition((color, background, border, box-shadow));
 
+  &::after {
+    content: '';
+    position: absolute;
+    z-index: 5;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    border: $border-width solid transparent;
+    @include rounded;
+    @include transition((opacity, border));
+    opacity: 0;
+  }
+
   // Default color
   background-color: $color-muted-bg;
   @include darkmode {
@@ -261,66 +275,55 @@ $bgColor: v-bind('bgColor');
 
   // Color
   &.bg {
-    &::after {
-      content: '';
-      position: absolute;
-      z-index: 5;
-      top: 2px;
-      bottom: 2px;
-      left: 2px;
-      right: 2px;
-      border: $border-width solid $color-border;
-      @include rounded;
-      @include transition(opacity);
-      opacity: 0;
-    }
-
-    @include focusMouse {
-      &::after {
-        opacity: 1;
-      }
-    }
-
     &:not(.default) {
       background: $bgColor;
       color: $textColor;
+
+      &::after {
+        border-color: black;
+        mix-blend-mode: multiply;
+      }
+
+      @include focusMouse {
+        &::after {
+          opacity: 0.3;
+        }
+      }
     }
 
     &.default {
       background-color: $color-headings;
       color: $dark-color-body;
-      border-color: transparent;
+
+      &::after {
+        border-color: $color-link-hover;
+      }
+
+      @include focusMouse {
+        &::after {
+          opacity: 1;
+        }
+      }
 
       @include darkmode {
         background-color: $dark-color-headings;
         color: $color-body;
-      }
-
-      @include focusMouse {
-        background-color: $color-link-hover;
-        color: white;
-        border-color: darken($color-link-hover, 20%);
       }
     }
   }
 
   &.border {
     &::after {
-      content: '';
-      position: absolute;
-      z-index: 5;
-      top: 0;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      border: $border-width solid $textColor;
-      @include rounded;
-      @include transition(border);
+      opacity: 1;
     }
 
     &:not(.default) {
       background-color: transparent;
       color: $textColor;
+
+      &::after {
+        border: $border-width solid $textColor;
+      }
 
       @include focusMouse {
         color: $textColor;
@@ -341,7 +344,6 @@ $bgColor: v-bind('bgColor');
       }
 
       @include darkmode {
-        background-color: transparent;
         color: $dark-color-body;
 
         &::after {
@@ -350,7 +352,12 @@ $bgColor: v-bind('bgColor');
       }
 
       @include focusMouse {
+        background-color: $color-muted-bg;
         color: $color-link-hover;
+
+        @include darkmode {
+          background-color: $dark-color-muted-bg;
+        }
 
         &::after {
           border-color: $color-link-hover;

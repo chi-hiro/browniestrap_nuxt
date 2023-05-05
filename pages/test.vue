@@ -119,8 +119,6 @@ getMockApi()
         />
 
         <Textfield name="remarks" type="textarea" label="備考" v-model="state.form.remarks" :maxlength="100" />
-
-        <Button model="bg" color="primary" @click="postMockApi" title="SAVE" />
       </div>
     </div>
   </section>

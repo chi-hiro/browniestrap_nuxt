@@ -337,7 +337,8 @@ $chip-icon-lg: $icon-size * 1;
 
 a.chip {
   @include transition((color, border, background));
-  @include hoverMouse {
+  @include focusMouse {
+    text-decoration: none;
     color: $color-body;
     border-color: $color-border;
 

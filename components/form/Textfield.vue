@@ -208,14 +208,14 @@ watchEffect(() => {
 $feedbackColor: v-bind('feedbackColor');
 
 @mixin focusLabelStyle() {
-  top: -($input-padding-md) + calc(12px / 2);
-  left: $input-padding-x + $border-width;
+  top: calc(12px / 2 - $input-padding-md);
+  left: calc($input-padding-x + $border-width);
   padding: 0 0.25rem !important;
   font-size: 0.75rem;
   height: auto;
   line-height: 1;
   color: inherit;
-  background-color: white;
+  background-color: darken($color-body-bg, 2%);
   pointer-events: none;
 
   display: flex;
@@ -223,7 +223,7 @@ $feedbackColor: v-bind('feedbackColor');
   gap: 0.25rem;
 
   @include darkmode {
-    background-color: black;
+    background-color: darken($dark-color-body-bg, 2%);
   }
 
   .length {
@@ -409,7 +409,7 @@ $feedbackColor: v-bind('feedbackColor');
   width: 100%;
   line-height: $icon-size;
   color: $color-body;
-  background-color: white;
+  background-color: darken($color-body-bg, 2%);
   background-image: none;
   background-clip: padding-box;
   border: $border-width solid $color-input-border;
@@ -418,7 +418,7 @@ $feedbackColor: v-bind('feedbackColor');
 
   @include darkmode {
     color: $dark-color-body;
-    background-color: black;
+    background-color: darken($dark-color-body-bg, 2%);
     border-color: $dark-color-input-border;
   }
 

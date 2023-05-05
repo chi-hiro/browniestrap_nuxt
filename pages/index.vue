@@ -26,8 +26,9 @@ const state = reactive({
   modeltest1: 'dummy',
   modeltest2: false,
   modeltest3: true,
-  modeltest4: 'exsample3',
+  modeltest4: '10',
   modeltest5: 1,
+  modeltest6: 'example-radio1',
 })
 
 const basicModal = ref<InstanceType<typeof Modal>>()
@@ -393,7 +394,7 @@ const scrollModal = ref<InstanceType<typeof Modal>>()
       <h2 class="section-heading">Button</h2>
 
       <h3 class="section-heading-sm">Bg</h3>
-      <div class="flex flex-wrap gap-0.5 p-1 bg-muted">
+      <div class="flex flex-wrap gap-0.5">
         <Button model="bg md blockDown rounded" color="primary" title="Primary" />
         <Button model="bg md blockDown rounded" color="secondary" title="Secondary" />
         <Button model="bg md blockDown rounded" color="success" title="Success" />
@@ -407,7 +408,7 @@ const scrollModal = ref<InstanceType<typeof Modal>>()
       </div>
 
       <h3 class="section-heading-sm">Border</h3>
-      <div class="flex flex-wrap gap-0.5 p-1 bg-muted">
+      <div class="flex flex-wrap gap-0.5">
         <Button model="border md blockDown rounded" color="primary" title="Primary" />
         <Button model="border md blockDown rounded" color="secondary" title="Secondary" />
         <Button model="border md blockDown rounded" color="success" title="Success" />
@@ -502,12 +503,30 @@ const scrollModal = ref<InstanceType<typeof Modal>>()
         <p>v-model: {{ state.modeltest2 }}</p>
         <div class="flex flex-wrap gap-1 mb-1">
           <Checkbox
-            name="exsample-check"
-            value="exsample-checkbox1"
-            label="exsample-checkbox1"
+            name="example-check"
+            value="example-checkbox1"
+            label="example-checkbox1"
             v-model="state.modeltest2"
           />
-          <Checkbox name="exsample-check" value="exsample-checkbox2" :disabled="true" label="exsample-checkbox2" />
+          <Checkbox name="example-check" value="example-checkbox2" :disabled="true" label="example-checkbox2" />
+        </div>
+
+        <p>v-model: {{ state.modeltest6 }}</p>
+        <div class="flex flex-wrap gap-1 mb-1">
+          <Checkbox
+            type="radio"
+            name="example-radio"
+            value="example-radio1"
+            label="example-radio1"
+            v-model="state.modeltest6"
+          />
+          <Checkbox
+            type="radio"
+            name="example-radio"
+            value="example-radio2"
+            label="example-radio2"
+            v-model="state.modeltest6"
+          />
         </div>
 
         <p>v-model: {{ state.modeltest4 }}</p>
@@ -515,16 +534,16 @@ const scrollModal = ref<InstanceType<typeof Modal>>()
           <Checkbox
             type="radio"
             model="box md"
-            name="exsample-radio2"
-            value="exsample3"
+            name="example-radiobox"
+            value="10"
             label="10"
             v-model="state.modeltest4"
           />
           <Checkbox
             type="radio"
             model="box md"
-            name="exsample-radio2"
-            value="exsample4"
+            name="example-radiobox"
+            value="20"
             label="20"
             v-model="state.modeltest4"
           />
@@ -533,14 +552,13 @@ const scrollModal = ref<InstanceType<typeof Modal>>()
         <h3 class="section-heading-sm">Switch</h3>
         <p>v-model: {{ state.modeltest3 }}</p>
         <div class="flex gap-1 mb-1">
-          <Switch name="exsample-switch" value="exsample-switch1" label="Switch 1" v-model="state.modeltest3" />
+          <Switch name="example-switch" value="example-switch1" label="Switch 1" v-model="state.modeltest3" />
         </div>
 
         <h3 class="section-heading-sm">Quantity</h3>
         <p>v-model: {{ state.modeltest5 }}</p>
         <div class="flex gap-0.5">
-          <Quantity v-model="state.modeltest5" :min="1" :max="99" name="quantity" />
-          <Button model="md bg" color="primary" @click="state.modeltest5 = 20" title="DEBUG" />
+          <Quantity v-model="state.modeltest5" model="sm" :min="1" :max="99" name="quantity" />
         </div>
       </form>
     </div>

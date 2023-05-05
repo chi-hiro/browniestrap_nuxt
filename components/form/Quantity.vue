@@ -133,23 +133,27 @@ watchEffect(() => {
   text-align: center;
   line-height: $icon-size;
   color: $color-body;
-  background-color: white;
+  background-color: transparent;
   background-image: none;
   background-clip: padding-box;
-  border: $border-width solid $color-input-border;
+  border-bottom: $border-width solid transparent;
 
   @include darkmode {
     color: $dark-color-body;
-    background-color: black;
-    border-color: $dark-color-input-border;
+  }
+
+  @include focusMouse {
+    border-color: $color-border;
+
+    @include darkmode {
+      border-color: $dark-color-border;
+    }
   }
 
   &:focus {
-    color: $color-body;
     border-color: $color-body;
 
     @include darkmode {
-      color: $dark-color-body;
       border-color: $dark-color-body;
     }
   }
@@ -202,6 +206,7 @@ watchEffect(() => {
 
   &.sm {
     @include inputSize(sm);
+    font-size: 1rem;
   }
 
   &.lg {
@@ -215,6 +220,7 @@ watchEffect(() => {
   border: $border-width solid $color-input-border;
   font-size: 1rem;
   text-align: center;
+  @include rounded(9999px);
 
   @include darkmode {
     border-color: $dark-color-input-border;
@@ -222,39 +228,32 @@ watchEffect(() => {
 
   @include focusMouse {
     color: $color-link-hover;
-    background-color: $color-muted-bg;
-
-    @include darkmode {
-      background-color: $dark-color-muted-bg;
-    }
-  }
-
-  &:first-child {
-    border-right: none;
-    @include roundedLeft($input-border-radius);
-  }
-
-  &:last-child {
-    border-left: none;
-    @include roundedRight($input-border-radius);
+    border-color: $color-link-hover;
   }
 
   &:disabled {
     pointer-events: none;
     color: transparent;
+    opacity: 0;
   }
 
   // Model
   &.md {
     @include inputSize(md);
+    width: $input-height-md;
+    padding: 0;
   }
 
   &.sm {
     @include inputSize(sm);
+    width: $input-height-sm;
+    padding: 0;
   }
 
   &.lg {
     @include inputSize(lg);
+    width: $input-height-lg;
+    padding: 0;
   }
 }
 </style>

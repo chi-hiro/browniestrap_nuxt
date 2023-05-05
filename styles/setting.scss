@@ -34,7 +34,7 @@ $color-body: #606060;
 $color-headings: #101010;
 $color-muted: rgba(0, 0, 0, 0.4);
 $color-border: rgba(0, 0, 0, 0.1);
-$color-input-border: rgba(0, 0, 0, 0.15);
+$color-input-border: rgba(0, 0, 0, 0.2);
 $color-body-bg: #ffffff;
 $color-muted-bg: rgba(0, 0, 0, 0.03);
 $color-header-bg: #ffffff;
@@ -45,7 +45,7 @@ $dark-color-body: #ffffff;
 $dark-color-headings: #ffffff;
 $dark-color-muted: rgba(255, 255, 255, 0.4);
 $dark-color-border: rgba(255, 255, 255, 0.1);
-$dark-color-input-border: rgba(255, 255, 255, 0.15);
+$dark-color-input-border: rgba(255, 255, 255, 0.2);
 $dark-color-body-bg: #202020;
 $dark-color-muted-bg: rgba(255, 255, 255, 0.03);
 $dark-color-header-bg: #404040;
@@ -114,9 +114,9 @@ $zindex-modal: 1010;
 $zindex-loader: 9999;
 
 // Form
-$input-border-radius: 8px;
-$input-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-$input-padding-x: 12px;
+$input-border-radius: 0.5rem;
+$input-box-shadow: none; // 0 1px 3px rgba(0, 0, 0, 0.1);
+$input-padding-x: 0.875rem;
 $button-padding-x: 2rem;
 
 $input-height-md: 48px;
@@ -124,13 +124,13 @@ $input-fontsize-md: 1rem;
 $input-padding-md: calc(($input-height-md - $icon-size) / 2 - $border-width);
 $button-padding-md: calc(($input-height-md - $icon-size) / 2);
 
-$input-height-sm: 40px;
+$input-height-sm: 32px;
 $input-fontsize-sm: 0.875rem;
 $input-padding-sm: calc(($input-height-sm - $icon-size) / 2 - $border-width);
 $button-padding-sm: calc(($input-height-sm - $icon-size) / 2);
 
 $input-height-lg: 56px;
-$input-fontsize-lg: 1.125rem;
+$input-fontsize-lg: 1rem;
 $input-padding-lg: calc(($input-height-lg - $icon-size) / 2 - $border-width);
 $button-padding-lg: calc(($input-height-lg - $icon-size) / 2);
 

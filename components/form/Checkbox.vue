@@ -81,6 +81,7 @@ $lightVariant: v-bind('lightVariant');
 .checkbox {
   display: flex;
   align-items: center;
+  gap: 0.5rem;
 
   input[type='checkbox'],
   input[type='radio'] {
@@ -89,59 +90,55 @@ $lightVariant: v-bind('lightVariant');
     cursor: pointer;
     position: relative;
     display: inline-block;
-    width: 22px;
-    height: 22px;
-    background-color: $color-input-border;
-    border: 2px solid transparent;
-
-    @include focusMouse {
-      border-color: $color-body;
-    }
+    width: $icon-size;
+    height: $icon-size;
+    border: 2px solid $color-input-border;
 
     @include darkmode {
-      background-color: $dark-color-input-border;
-
-      @include focusMouse {
-        border-color: $dark-color-body;
-      }
+      border-color: $dark-color-input-border;
     }
 
     &::after {
       content: '';
       position: absolute;
       z-index: 2;
-      opacity: 0.15;
+      opacity: 0;
+    }
+
+    @include focusMouse {
+      border-color: $color-body;
+
+      @include darkmode {
+        border-color: $dark-color-body;
+      }
+
+      &::after {
+        opacity: 0.2;
+      }
     }
 
     &:checked {
       background-color: $colorVariant;
-
-      @include focusMouse {
-        border-color: rgba(0, 0, 0, 0.3);
-      }
-
-      @include darkmode {
-        @include focusMouse {
-          border-color: white;
-        }
-      }
+      border-color: transparent;
 
       &::after {
         opacity: 1;
+      }
+
+      @include focusMouse {
+        border-color: $color-input-border;
+
+        @include darkmode {
+          border-color: $dark-color-input-border;
+        }
       }
     }
 
     &:disabled {
       pointer-events: none;
-      border: 2px solid transparent;
-      background-color: $color-muted-bg;
-
-      @include darkmode {
-        background-color: $dark-color-muted-bg;
-      }
 
       + label {
-        cursor: text;
+        pointer-events: none;
         color: $color-muted;
 
         @include darkmode {
@@ -155,8 +152,8 @@ $lightVariant: v-bind('lightVariant');
     @include rounded(4px);
 
     &::after {
-      top: 1px;
-      left: 6px;
+      top: 2px;
+      left: 7px;
       width: 6px;
       height: 12px;
       border-bottom: 2px solid black;
@@ -197,11 +194,10 @@ $lightVariant: v-bind('lightVariant');
     flex: 0 0 auto;
     cursor: pointer;
     margin: 0;
-    padding-left: 0.5rem;
     color: $color-body;
     font-size: $input-fontsize-md;
     font-weight: normal;
-    line-height: 22px;
+    line-height: 1.5;
 
     @include darkmode {
       color: $dark-color-body;
@@ -233,14 +229,13 @@ $lightVariant: v-bind('lightVariant');
       line-height: $icon-size;
       text-align: center;
       color: $color-body;
-      background-color: white;
+      background-color: transparent;
       border: $border-width solid $color-input-border;
 
       @include rounded($input-border-radius);
 
       @include darkmode {
         color: $dark-color-body;
-        background-color: black;
         border-color: $dark-color-input-border;
       }
     }
