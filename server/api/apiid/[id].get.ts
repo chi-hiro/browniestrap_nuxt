@@ -1,4 +1,4 @@
-import db from '@/public/db/apiid.json'
+import db from './db.json'
 
 type Type = {
   id: number
