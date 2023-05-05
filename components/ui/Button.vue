@@ -204,23 +204,9 @@ $bgColor: v-bind('bgColor');
 
   color: inherit;
   border: none;
-  box-shadow: $input-box-shadow;
+  box-shadow: $button-box-shadow;
   @include rounded;
   @include transition((color, background, border, box-shadow));
-
-  &::after {
-    content: '';
-    position: absolute;
-    z-index: 5;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    border: $border-width solid transparent;
-    @include rounded;
-    @include transition((opacity, border));
-    opacity: 0;
-  }
 
   // Default color
   background-color: $color-muted-bg;
@@ -275,92 +261,99 @@ $bgColor: v-bind('bgColor');
 
   // Color
   &.bg {
-    &:not(.default) {
-      background: $bgColor;
-      color: $textColor;
+    &::after {
+      content: '';
+      position: absolute;
+      z-index: 5;
+      top: 2px;
+      bottom: 2px;
+      left: 2px;
+      right: 2px;
+      border: 1px solid black;
+      mix-blend-mode: multiply;
+      @include rounded;
+      @include transition((top, bottom, left, right, border, opacity));
+      opacity: 0.1;
+    }
 
+    @include focusMouse {
       &::after {
-        border-color: black;
-        mix-blend-mode: multiply;
-      }
-
-      @include focusMouse {
-        &::after {
-          opacity: 0.3;
-        }
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        border-width: $border-width;
+        opacity: 0.4;
       }
     }
 
+    &:not(.default) {
+      background: $bgColor;
+      color: $textColor;
+    }
+
     &.default {
-      background-color: $color-headings;
-      color: $dark-color-body;
-
-      &::after {
-        border-color: $color-link-hover;
-      }
-
-      @include focusMouse {
-        &::after {
-          opacity: 1;
-        }
-      }
+      background-color: #a0a0a0;
+      color: white;
 
       @include darkmode {
-        background-color: $dark-color-headings;
-        color: $color-body;
+        background-color: #404040;
       }
     }
   }
 
   &.border {
+    background-color: rgba(96, 96, 96, 0.06);
+
     &::after {
+      content: '';
+      position: absolute;
+      z-index: 5;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      border: $border-width solid #606060;
+      @include rounded;
+      @include transition((opacity, border));
       opacity: 1;
     }
 
+    @include darkmode {
+      background-color: rgba(255, 255, 255, 0.06);
+
+      &::after {
+        border-color: #404040;
+      }
+    }
+
     &:not(.default) {
-      background-color: transparent;
+      background-color: $bgColor;
       color: $textColor;
 
       &::after {
-        border: $border-width solid $textColor;
+        border-color: $textColor;
       }
 
       @include focusMouse {
-        color: $textColor;
-        background-color: $bgColor;
-
-        &::after {
-          border-color: $textColor;
-        }
+        background-color: $textColor;
+        color: white;
       }
     }
 
     &.default {
-      background-color: transparent;
       color: $color-body;
-
-      &::after {
-        border: $border-width solid $color-border;
-      }
 
       @include darkmode {
         color: $dark-color-body;
-
-        &::after {
-          border-color: $dark-color-border;
-        }
       }
 
       @include focusMouse {
-        background-color: $color-muted-bg;
-        color: $color-link-hover;
+        background-color: #606060;
+        color: white;
 
         @include darkmode {
-          background-color: $dark-color-muted-bg;
-        }
-
-        &::after {
-          border-color: $color-link-hover;
+          background-color: #404040;
         }
       }
     }

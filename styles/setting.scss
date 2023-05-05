@@ -114,17 +114,17 @@ $zindex-modal: 1010;
 $zindex-loader: 9999;
 
 // Form
-$input-border-radius: 0.5rem;
-$input-box-shadow: none; // 0 1px 3px rgba(0, 0, 0, 0.1);
+$input-border-radius: $border-radius;
 $input-padding-x: 0.875rem;
 $button-padding-x: 2rem;
+$button-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
 
 $input-height-md: 48px;
 $input-fontsize-md: 1rem;
 $input-padding-md: calc(($input-height-md - $icon-size) / 2 - $border-width);
 $button-padding-md: calc(($input-height-md - $icon-size) / 2);
 
-$input-height-sm: 32px;
+$input-height-sm: 40px;
 $input-fontsize-sm: 0.875rem;
 $input-padding-sm: calc(($input-height-sm - $icon-size) / 2 - $border-width);
 $button-padding-sm: calc(($input-height-sm - $icon-size) / 2);

@@ -27,13 +27,13 @@ export const variables: { [key: string]: any } = {
   color,
 
   lightColor: {
-    primary: rgba(color.primary, 0.1),
-    secondary: rgba(color.secondary, 0.1),
-    success: rgba(color.success, 0.1),
-    info: rgba(color.info, 0.1),
-    warning: rgba(color.warning, 0.1),
-    danger: rgba(color.danger, 0.1),
-    white: rgba(color.white, 0.1),
+    primary: rgba(color.primary, 0.06),
+    secondary: rgba(color.secondary, 0.06),
+    success: rgba(color.success, 0.06),
+    info: rgba(color.info, 0.06),
+    warning: rgba(color.warning, 0.06),
+    danger: rgba(color.danger, 0.06),
+    white: rgba(color.white, 0.06),
   },
 
   theme: {
@@ -66,7 +66,7 @@ export const variables: { [key: string]: any } = {
     },
 
     sm: {
-      height: 32,
+      height: 40,
     },
 
     lg: {
