@@ -205,6 +205,7 @@ watchEffect(() => {
 
 <style scoped lang="scss">
 @use '/styles/core/core' as *;
+
 $feedbackColor: v-bind('feedbackColor');
 
 @mixin focusLabelStyle() {

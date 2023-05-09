@@ -178,8 +178,7 @@ watchEffect(() => {
     }
   }
 
-  &:disabled,
-  &[readonly] {
+  &:disabled {
     background-color: $color-muted-bg;
     border-color: $color-muted-bg;
     opacity: 1;

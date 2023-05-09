@@ -236,10 +236,6 @@ $bgColor: v-bind('bgColor');
     opacity: 0.3;
     box-shadow: none;
 
-    .show {
-      animation: none !important;
-    }
-
     &:active {
       transform: none;
     }

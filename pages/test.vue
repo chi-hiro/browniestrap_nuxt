@@ -73,17 +73,6 @@ const getMockApi = async () => {
   if (data.value) state.form = data.value
 }
 
-const postMockApi = async () => {
-  const { data } = await useFetch('/api/apiid/post', { method: 'POST', body: state.form })
-
-  if (data.value === 'success') {
-    toast('success', 'セーブが完了しました')
-    getMockApi()
-  } else if (data.value === 'error') {
-    toast('danger', '書き込みに失敗しました')
-  }
-}
-
 getMockApi()
 </script>
 
