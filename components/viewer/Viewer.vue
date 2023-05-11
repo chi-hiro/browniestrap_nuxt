@@ -340,6 +340,7 @@ body.show_viewer {
     position: fixed;
     background-color: rgba(0, 0, 0, 0.8);
     backdrop-filter: blur(10px);
+    @include overlayTexture(black);
   }
 
   @include isTouch {
@@ -519,7 +520,7 @@ body.show_viewer {
   line-height: $icon-size;
   font-size: 0.75rem;
   text-align: center;
-  color: rgba(255, 255, 255, 0.5);
+  color: rgba(255, 255, 255, 0.4);
 
   span {
     display: inline-block;

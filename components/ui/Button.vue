@@ -280,6 +280,12 @@ $bgColor: v-bind('bgColor');
         right: 0;
         border-width: $border-width;
         opacity: 0.4;
+
+        @include darkmode {
+          border-color: white;
+          mix-blend-mode: screen;
+          opacity: 0.6;
+        }
       }
     }
 
@@ -299,7 +305,7 @@ $bgColor: v-bind('bgColor');
   }
 
   &.border {
-    background-color: rgba(96, 96, 96, 0.06);
+    background-color: transparent;
 
     &::after {
       content: '';
@@ -316,15 +322,20 @@ $bgColor: v-bind('bgColor');
     }
 
     @include darkmode {
-      background-color: rgba(255, 255, 255, 0.06);
-
       &::after {
         border-color: #404040;
       }
     }
 
+    @include focusMouse {
+      background-color: rgba(96, 96, 96, 0.1);
+
+      @include darkmode {
+        background-color: rgba(255, 255, 255, 0.03);
+      }
+    }
+
     &:not(.default) {
-      background-color: $bgColor;
       color: $textColor;
 
       &::after {
@@ -332,14 +343,13 @@ $bgColor: v-bind('bgColor');
       }
 
       @include focusMouse {
-        background-color: $textColor;
-        color: white;
+        background-color: $bgColor;
       }
     }
 
     &.white {
       @include focusMouse {
-        color: $color-body;
+        background-color: rgba(255, 255, 255, 0.03);
       }
     }
 
@@ -348,15 +358,6 @@ $bgColor: v-bind('bgColor');
 
       @include darkmode {
         color: $dark-color-body;
-      }
-
-      @include focusMouse {
-        background-color: #606060;
-        color: white;
-
-        @include darkmode {
-          background-color: #404040;
-        }
       }
     }
   }

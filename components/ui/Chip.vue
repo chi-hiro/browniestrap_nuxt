@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { variables } from '@/lib/styleUtl'
+import { anchor } from '@/lib/mixins'
 
 //*******************************************************************************
 // Variables
@@ -51,7 +52,12 @@ const bgColor = computed<string>(() => {
 </script>
 
 <template>
-  <NuxtLink v-if="props.href" :class="chipClass" :to="props.href">
+  <a v-if="props.href?.charAt(0) === '#'" :href="props.href" :class="chipClass" @click="anchor">
+    <slot v-if="$slots.default" />
+    <template v-else>{{ props.title }}</template>
+  </a>
+
+  <NuxtLink v-else-if="props.href" :to="props.href" :class="chipClass">
     <slot v-if="$slots.default" />
     <template v-else>{{ props.title }}</template>
   </NuxtLink>
