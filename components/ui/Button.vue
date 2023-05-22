@@ -261,24 +261,19 @@ $bgColor: v-bind('bgColor');
       content: '';
       position: absolute;
       z-index: 5;
-      top: 2px;
-      bottom: 2px;
-      left: 2px;
-      right: 2px;
-      border: 1px solid black;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      border: $border-width solid black;
       mix-blend-mode: multiply;
       @include rounded;
       @include transition((top, bottom, left, right, border, opacity));
-      opacity: 0.1;
+      opacity: 0;
     }
 
     @include focusMouse {
       &::after {
-        top: 0;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        border-width: $border-width;
         opacity: 0.4;
 
         @include darkmode {

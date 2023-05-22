@@ -294,6 +294,7 @@ $feedbackColor: v-bind('feedbackColor');
       align-items: center;
       gap: 0.25rem;
       background-color: $feedbackColor;
+      border-radius: 0.25rem;
       position: absolute;
       z-index: 10;
       bottom: calc($icon-size / -2);
@@ -311,18 +312,6 @@ $feedbackColor: v-bind('feedbackColor');
       ::v-deep(.font-icon) {
         transform: none;
         font-size: 16px;
-      }
-
-      &::after {
-        content: '';
-        position: absolute;
-        left: 100%;
-        top: 0;
-        width: 0;
-        height: 0;
-        border-style: solid;
-        border-width: 24px 8px 0 0;
-        border-color: $feedbackColor transparent transparent transparent;
       }
     }
 

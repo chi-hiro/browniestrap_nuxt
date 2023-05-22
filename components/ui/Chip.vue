@@ -182,6 +182,7 @@ $chip-icon-lg: $icon-size * 1;
 
   &.status {
     display: flex;
+    justify-content: flex-start;
     align-items: center;
     gap: 0.5rem;
     min-width: initial;
