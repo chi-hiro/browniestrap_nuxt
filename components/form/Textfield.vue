@@ -79,7 +79,7 @@ const boxClass = computed<string>(() => {
   props.starticon && arr.push('with-starticon')
   if (props.endicon || props.type === 'password') arr.push('with-endicon')
   state.isFocus && arr.push('focused')
-  return arr.join(' ')
+  return [...new Set(arr.join(' ').split(' '))].join(' ')
 })
 
 const inputClass = computed<string>(() => {
@@ -97,7 +97,10 @@ const feedbackColor = computed<string>(() => {
 })
 
 onMounted(() => {
-  state.size = props.model ? props.model : 'md'
+  const modelList = props.model?.split(' ')
+  if (modelList?.includes('sm')) state.size = 'sm'
+  if (modelList?.includes('lg')) state.size = 'lg'
+
   if (props.modelValue) {
     state.value = props.modelValue
     update(props.modelValue)
@@ -194,7 +197,7 @@ watchEffect(() => {
       <Icon :value="state.passType === 'password' ? 'visibility_off' : 'visibility'" />
     </button>
 
-    <span v-if="props.feedback?.message" class="textfield-feedback">
+    <span v-if="props.feedback?.message" :class="['textfield-feedback', state.size]">
       <Icon value="error" />
       {{ props.feedback.message }}
     </span>
@@ -209,10 +212,10 @@ watchEffect(() => {
 $feedbackColor: v-bind('feedbackColor');
 
 @mixin focusLabelStyle() {
-  top: calc(12px / 2 - $input-padding-md);
+  top: calc(0.875rem / -2 + $border-width / 2);
   left: calc($input-padding-x + $border-width);
   padding: 0 0.25rem !important;
-  font-size: 0.75rem;
+  font-size: 0.875rem;
   height: auto;
   line-height: 1;
   color: inherit;
@@ -229,6 +232,11 @@ $feedbackColor: v-bind('feedbackColor');
 
   .length {
     display: inline-block;
+  }
+
+  &.sm {
+    top: calc(0.75rem / -2 + $border-width / 2);
+    font-size: 0.75rem;
   }
 }
 
@@ -305,13 +313,17 @@ $feedbackColor: v-bind('feedbackColor');
       padding: 0 0.25rem;
 
       color: #ffffff;
-      font-size: 0.75rem;
+      font-size: 0.875rem;
       font-weight: bold;
       line-height: 1.3;
 
       ::v-deep(.font-icon) {
         transform: none;
         font-size: 16px;
+      }
+
+      &.sm {
+        font-size: 0.75rem;
       }
     }
 
