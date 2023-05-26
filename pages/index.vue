@@ -481,6 +481,7 @@ const scrollModal = ref<InstanceType<typeof Modal>>()
           />
           <Textfield name="disabled" label="Disabled" :disabled="true" model-value="disabled content" />
           <Textfield name="readonly" label="Readonly" :readonly="true" model-value="readonly content" />
+          <Textfield type="static" name="static" label="Static" model-value="static input" />
           <Textfield name="starticon" type="search" placeholder="Search" starticon="search" />
           <Textfield name="endicon" type="number" label="End Icon" endicon="currency_yen" />
           <Textfield

@@ -78,7 +78,7 @@ const boxClass = computed<string>(() => {
   props.feedback && arr.push('feedback')
   props.starticon && arr.push('with-starticon')
   if (props.endicon || props.type === 'password') arr.push('with-endicon')
-  state.isFocus && arr.push('focused')
+  if (state.isFocus || props.type === 'file') arr.push('focused')
   return [...new Set(arr.join(' ').split(' '))].join(' ')
 })
 
@@ -163,6 +163,10 @@ watchEffect(() => {
       @input="update(($event.target as HTMLInputElement).files)"
     />
 
+    <span v-else-if="props.type === 'static'" :class="inputClass">
+      {{ state.value }}
+    </span>
+
     <input
       v-else
       :class="inputClass"
@@ -213,7 +217,7 @@ $feedbackColor: v-bind('feedbackColor');
 
 @mixin focusLabelStyle() {
   top: calc(0.875rem / -2 + $border-width / 2);
-  left: calc($input-padding-x + $border-width);
+  left: calc($input-padding-x + $border-width - 0.25rem);
   padding: 0 0.25rem !important;
   font-size: 0.875rem;
   height: auto;
@@ -305,7 +309,7 @@ $feedbackColor: v-bind('feedbackColor');
       border-radius: 0.25rem;
       position: absolute;
       z-index: 10;
-      bottom: calc($icon-size / -2);
+      bottom: calc($icon-size / -2 + $border-width / 2);
       left: 0;
       max-width: 80%;
       min-height: $icon-size;
@@ -443,34 +447,44 @@ $feedbackColor: v-bind('feedbackColor');
     }
   }
 
-  &:-webkit-autofill {
+  &:-webkit-autofill,
+  &[data-com-onepassword-filled='light'] {
     -webkit-text-fill-color: $color-body;
     caret-color: $color-body;
-    transition: background 9999s;
+    box-shadow: 0 0 0 1000px darken($color-body-bg, 2%) inset;
 
     @include darkmode {
       -webkit-text-fill-color: $dark-color-body;
       caret-color: $dark-color-body;
+      box-shadow: 0 0 0 1000px darken($dark-color-body-bg, 2%) inset;
     }
   }
 
   &:disabled,
   &[readonly] {
     background-color: $color-muted-bg;
-    border-color: $color-muted-bg;
     opacity: 1;
     box-shadow: none;
 
     @include darkmode {
       background-color: $dark-color-muted-bg;
-      border-color: $dark-color-muted-bg;
+    }
+  }
+
+  &[readonly] {
+    border-color: transparent;
+
+    @include darkmode {
+      border-color: transparent;
     }
   }
 
   &:disabled {
+    border-color: $color-border;
     color: $color-muted;
 
     @include darkmode {
+      border-color: $dark-color-muted-bg;
       color: $dark-color-muted;
     }
   }
@@ -520,6 +534,17 @@ select.textfield-input {
 
 input[type='file'].textfield-input {
   line-height: 18px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+span.textfield-input {
+  border-color: transparent;
+  background-color: transparent;
+
+  + .textfield-label {
+    background-color: transparent;
+  }
 }
 
 .textfield-label {
