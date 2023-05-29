@@ -214,11 +214,7 @@ $lightVariant: v-bind('lightVariant');
 
       &:checked {
         + label {
-          border-color: $color-body;
-
-          @include darkmode {
-            border-color: $dark-color-body;
-          }
+          border-color: $color-primary;
         }
       }
     }
@@ -230,13 +226,13 @@ $lightVariant: v-bind('lightVariant');
       text-align: center;
       color: $color-body;
       background-color: transparent;
-      border: $border-width solid $color-input-border;
+      border: $border-width solid $color-body;
 
       @include rounded($input-border-radius);
 
       @include darkmode {
         color: $dark-color-body;
-        border-color: $dark-color-input-border;
+        border-color: $dark-color-body;
       }
     }
 

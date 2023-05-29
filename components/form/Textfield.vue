@@ -9,7 +9,7 @@ const props = defineProps<{
   type?: string
   model?: string
   name: string
-  modelValue?: string | number
+  modelValue?: string | number | FileList
   option?: Array<{ value: string | number; label?: string }>
   label?: string
   placeholder?: string
