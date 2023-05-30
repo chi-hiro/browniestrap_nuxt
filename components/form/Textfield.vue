@@ -8,6 +8,7 @@ import Icon from '@/components/ui/Icon.vue'
 const props = defineProps<{
   type?: string
   model?: string
+  rule?: string
   name: string
   modelValue?: string | number | FileList
   option?: Array<{ value: string | number; label?: string }>
@@ -19,7 +20,7 @@ const props = defineProps<{
   readonly?: boolean
   accept?: string
   help?: string
-  feedback?: { color: string; message?: string }
+  feedback?: { color: string; icon?: string; message?: string }
   starticon?: string
   endicon?: string
 }>()
@@ -117,97 +118,112 @@ watchEffect(() => {
 </script>
 
 <template>
-  <div :class="boxClass">
-    <select
-      v-if="props.type === 'select'"
-      :class="inputClass"
-      :name="props.name"
-      :id="`textfield-${props.name}`"
-      :required="props.required"
-      :disabled="props.disabled"
-      v-model="state.value"
-      @input="update(($event.target as HTMLSelectElement).value)"
-    >
-      <option v-for="item in props.option" :key="item.value" :value="item.value">
-        {{ item.label ? item.label : item.value }}
-      </option>
-    </select>
+  <ValidationField
+    :name="props.label || props.name"
+    :rules="{
+      required: props.required,
+      email: props.rule === 'email',
+      numeric: props.rule === 'numeric',
+      minusNumber: props.rule === 'minusNumber',
+    }"
+    v-slot="{ field, errors, meta: { valid, validated } }"
+    v-model="state.value"
+  >
+    <div :class="[boxClass, { validated: !valid && validated }]">
+      <select
+        v-if="props.type === 'select'"
+        :class="inputClass"
+        :id="`textfield-${props.name}`"
+        :required="props.required"
+        :disabled="props.disabled"
+        :="field"
+        @input="update(($event.target as HTMLSelectElement).value)"
+      >
+        <option v-for="item in props.option" :key="item.value" :value="item.value">
+          {{ item.label ? item.label : item.value }}
+        </option>
+      </select>
 
-    <textarea
-      v-else-if="props.type === 'textarea'"
-      :class="inputClass"
-      ref="textareaRef"
-      rows="1"
-      :name="props.name"
-      :id="`textfield-${props.name}`"
-      :placeholder="props.placeholder"
-      :required="props.required"
-      :disabled="props.disabled"
-      :readOnly="props.readonly"
-      :max-length="props.maxlength"
-      v-model="(state.value as string)"
-      @input="update(($event.target as HTMLTextAreaElement).value)"
-    />
+      <textarea
+        v-else-if="props.type === 'textarea'"
+        :class="inputClass"
+        ref="textareaRef"
+        rows="1"
+        :id="`textfield-${props.name}`"
+        :placeholder="props.placeholder"
+        :required="props.required"
+        :disabled="props.disabled"
+        :readOnly="props.readonly"
+        :max-length="props.maxlength"
+        :="field"
+        @input="update(($event.target as HTMLTextAreaElement).value)"
+      />
 
-    <input
-      v-else-if="props.type === 'file'"
-      :class="inputClass"
-      type="file"
-      :name="props.name"
-      :id="`textfield-${props.name}`"
-      :placeholder="props.placeholder"
-      :required="props.required"
-      :disabled="props.disabled"
-      :readOnly="props.readonly"
-      :accept="props.accept"
-      @input="update(($event.target as HTMLInputElement).files)"
-    />
+      <input
+        v-else-if="props.type === 'file'"
+        :class="inputClass"
+        type="file"
+        :name="props.name"
+        :id="`textfield-${props.name}`"
+        :placeholder="props.placeholder"
+        :required="props.required"
+        :disabled="props.disabled"
+        :readOnly="props.readonly"
+        :accept="props.accept"
+        @input="update(($event.target as HTMLInputElement).files)"
+      />
 
-    <span v-else-if="props.type === 'static'" :class="inputClass">
-      {{ state.value }}
-    </span>
+      <span v-else-if="props.type === 'static'" :class="inputClass">
+        {{ state.value }}
+      </span>
 
-    <input
-      v-else
-      :class="inputClass"
-      :type="props.type ? (props.type === 'password' ? state.passType : props.type) : 'text'"
-      :name="props.name"
-      :autocomplete="props.name"
-      :id="`textfield-${props.name}`"
-      :placeholder="props.placeholder"
-      :required="props.required"
-      :disabled="props.disabled"
-      :readOnly="props.readonly"
-      :max-length="props.maxlength"
-      v-model="state.value"
-      @input="update(($event.target as HTMLInputElement).value)"
-    />
+      <input
+        v-else
+        :class="inputClass"
+        :type="props.type ? (props.type === 'password' ? state.passType : props.type) : 'text'"
+        :autocomplete="props.name"
+        :id="`textfield-${props.name}`"
+        :placeholder="props.placeholder"
+        :required="props.required"
+        :disabled="props.disabled"
+        :readOnly="props.readonly"
+        :max-length="props.maxlength"
+        :="field"
+        @input="update(($event.target as HTMLInputElement).value)"
+      />
 
-    <label v-if="props.label || props.feedback || props.maxlength" :class="labelClass">
-      {{ props.label }}
-      {{ props.required ? '*' : '' }}
-      <span v-if="props.maxlength" class="length">({{ state.length }}/{{ props.maxlength }})</span>
-    </label>
+      <label v-if="props.label || props.maxlength" :class="labelClass">
+        {{ !valid && validated ? errors[0] : props.label }}
+        {{ props.required ? '*' : '' }}
+        <span v-if="props.maxlength" class="length">({{ state.length }}/{{ props.maxlength }})</span>
+      </label>
 
-    <span v-if="props.starticon" class="icon starticon">
-      <Icon :value="props.starticon" />
-    </span>
+      <span v-if="props.starticon" class="icon starticon">
+        <Icon :value="props.starticon" />
+      </span>
 
-    <span v-if="props.endicon" class="icon endicon">
-      <Icon :value="props.endicon" />
-    </span>
+      <span v-if="props.endicon" class="icon endicon">
+        <Icon :value="props.endicon" />
+      </span>
 
-    <button v-if="props.type === 'password'" class="icon endicon" type="button" tab-index="-1" @click="togglePassword">
-      <Icon :value="state.passType === 'password' ? 'visibility_off' : 'visibility'" />
-    </button>
+      <button
+        v-if="props.type === 'password'"
+        class="icon endicon"
+        type="button"
+        tab-index="-1"
+        @click="togglePassword"
+      >
+        <Icon :value="state.passType === 'password' ? 'visibility_off' : 'visibility'" />
+      </button>
 
-    <span v-if="props.feedback?.message" :class="['textfield-feedback', state.size]">
-      <Icon value="error" />
-      {{ props.feedback.message }}
-    </span>
+      <span v-if="props.feedback?.message" :class="['textfield-feedback', state.size]">
+        <Icon v-if="props.feedback.icon" :value="props.feedback.icon" />
+        {{ props.feedback.message }}
+      </span>
 
-    <small v-if="props.help" class="textfield-help">{{ props.help }}</small>
-  </div>
+      <small v-if="props.help" class="textfield-help">{{ props.help }}</small>
+    </div>
+  </ValidationField>
 </template>
 
 <style scoped lang="scss">
@@ -306,19 +322,18 @@ $feedbackColor: v-bind('feedbackColor');
       align-items: center;
       gap: 0.25rem;
       background-color: $feedbackColor;
-      border-radius: 0.25rem;
       position: absolute;
       z-index: 10;
-      bottom: calc($icon-size / -2 + $border-width / 2);
-      left: 0;
+      bottom: calc(1.25rem / -2 + $border-width / 2);
+      left: 0.25rem;
       max-width: 80%;
-      min-height: $icon-size;
+      min-height: 1.25rem;
       margin: 0 0.5rem;
       padding: 0 0.25rem;
+      @include rounded(2px);
 
       color: #ffffff;
       font-size: 0.875rem;
-      font-weight: bold;
       line-height: 1.3;
 
       ::v-deep(.font-icon) {
@@ -337,6 +352,23 @@ $feedbackColor: v-bind('feedbackColor');
       &:focus {
         + label {
           color: $feedbackColor;
+        }
+      }
+    }
+  }
+
+  &.validated {
+    label {
+      @include focusLabelStyle;
+      color: $color-danger;
+    }
+
+    .textfield-input {
+      border-color: $color-danger;
+
+      &:focus {
+        + label {
+          color: $color-danger;
         }
       }
     }

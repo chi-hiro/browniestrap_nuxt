@@ -476,8 +476,9 @@ const scrollModal = ref<InstanceType<typeof Modal>>()
           <Textfield
             name="feedback"
             label="Feedback"
-            :feedback="{ color: 'danger', message: 'Error message.' }"
+            :feedback="{ color: 'success', icon: 'check_circle', message: 'このIDは使用可能です' }"
             :required="true"
+            v-model="state.modeltest1"
           />
           <Textfield name="disabled" label="Disabled" :disabled="true" model-value="disabled content" />
           <Textfield name="readonly" label="Readonly" :readonly="true" model-value="readonly content" />

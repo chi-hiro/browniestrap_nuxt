@@ -3,7 +3,7 @@ import { rgba } from 'polished'
 const color = {
   primary: '#6ED4BE',
   secondary: '#D38A58',
-  success: '#8CCD26',
+  success: '#81c710',
   info: '#5FBEDB',
   warning: '#EAA930',
   danger: '#E13D3B',
