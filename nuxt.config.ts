@@ -13,6 +13,7 @@ export default defineNuxtConfig({
       apiBaseUrl: 'https://petstore.swagger.io/v2',
     },
   },
+  build: { transpile: ['@vee-validate/rules'] },
   app: {
     head: {
       title: 'Browniestrap',
