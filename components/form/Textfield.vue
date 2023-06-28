@@ -154,7 +154,7 @@ watchEffect(() => {
         :required="props.required"
         :disabled="props.disabled"
         :readOnly="props.readonly"
-        :max-length="props.maxlength"
+        :maxlength="props.maxlength"
         :="field"
         @input="update(($event.target as HTMLTextAreaElement).value)"
       />
@@ -187,7 +187,7 @@ watchEffect(() => {
         :required="props.required"
         :disabled="props.disabled"
         :readOnly="props.readonly"
-        :max-length="props.maxlength"
+        :maxlength="props.maxlength"
         :="field"
         @input="update(($event.target as HTMLInputElement).value)"
       />
