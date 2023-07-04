@@ -71,6 +71,11 @@ const update = (value: string | number | FileList | null) => {
   emit('update:modelValue', value)
 }
 
+const onEnter = (e: KeyboardEvent) => {
+  if (e.isComposing) return
+  emit('enter')
+}
+
 //*******************************************************************************
 // Hooks
 //*******************************************************************************
@@ -190,7 +195,7 @@ watchEffect(() => {
         :maxlength="props.maxlength"
         :="field"
         @input="update(($event.target as HTMLInputElement).value)"
-        @keydown.enter="emit('enter')"
+        @keydown.enter="onEnter"
       />
 
       <label v-if="props.label || props.maxlength" :class="labelClass">
