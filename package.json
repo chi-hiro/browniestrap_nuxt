@@ -8,24 +8,24 @@
     "openapi-generate": "docker run --rm -v ${PWD}/openapi:/out openapitools/openapi-generator-cli:v6.0.1 generate --generator-name typescript-fetch --input-spec https://raw.githubusercontent.com/openapitools/openapi-generator/master/modules/openapi-generator/src/test/resources/3_0/petstore.yaml --output /out --api-package api --model-package model --generate-alias-as-model --additional-properties supportsES6=true --additional-properties withInterfaces=true --additional-properties withSeparateModelsAndApi=true"
   },
   "dependencies": {
-    "@types/node": "^20.3.2",
-    "@vee-validate/i18n": "^4.10.2",
-    "@vee-validate/rules": "^4.10.2",
+    "@types/node": "^20.3.3",
+    "@vee-validate/i18n": "^4.10.5",
+    "@vee-validate/rules": "^4.10.5",
     "autoprefixer": "^10.4.14",
     "nuxt": "^3.6.1",
     "polished": "^4.2.2",
     "postcss": "^8.4.24",
     "prettier": "^2.8.8",
     "sass": "^1.63.6",
-    "swiper": "^9.4.1",
+    "swiper": "^10.0.3",
     "tailwindcss": "^3.3.2",
-    "vee-validate": "^4.10.2"
+    "vee-validate": "^4.10.5"
   },
   "devDependencies": {
     "@nuxtjs/eslint-config-typescript": "^12.0.0",
-    "@typescript-eslint/eslint-plugin": "^5.60.1",
-    "@typescript-eslint/parser": "^5.60.1",
-    "eslint": "^8.43.0",
+    "@typescript-eslint/eslint-plugin": "^5.61.0",
+    "@typescript-eslint/parser": "^5.61.0",
+    "eslint": "^8.44.0",
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-vue": "^9.15.1"
   }

@@ -39,7 +39,7 @@ const state = reactive<{
   passType: 'password',
 })
 
-const emit = defineEmits(['update:modelValue'])
+const emit = defineEmits(['update:modelValue', 'enter'])
 
 const textareaRef = ref<HTMLTextAreaElement | null>(null)
 
@@ -190,6 +190,7 @@ watchEffect(() => {
         :maxlength="props.maxlength"
         :="field"
         @input="update(($event.target as HTMLInputElement).value)"
+        @keydown.enter="emit('enter')"
       />
 
       <label v-if="props.label || props.maxlength" :class="labelClass">

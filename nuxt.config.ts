@@ -17,6 +17,9 @@ export default defineNuxtConfig({
   app: {
     head: {
       title: 'Browniestrap',
+      htmlAttrs: {
+        lang: 'ja',
+      },
       meta: [
         { charset: 'utf-8' },
         {

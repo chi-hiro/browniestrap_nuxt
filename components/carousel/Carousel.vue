@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { Swiper, SwiperSlide } from 'swiper/vue'
-import { Autoplay, EffectFade, Navigation, Pagination } from 'swiper'
+import { Autoplay, EffectFade, Navigation, Pagination } from 'swiper/modules'
 import { env } from '@/lib/env'
 import { elementInScreen } from '@/lib/elementInScreen'
 import { openViewerManual } from '@/lib/viewer'
@@ -344,6 +344,7 @@ watch(
 <style lang="scss">
 @use '/styles/core/core' as *;
 @use 'swiper/scss';
+@use 'swiper/scss/autoplay';
 @use 'swiper/scss/effect-fade';
 @use 'swiper/scss/pagination';
 

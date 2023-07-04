@@ -900,7 +900,7 @@ const scrollModal = ref<InstanceType<typeof Modal>>()
         <Button
           model="bg md"
           color="primary"
-          href="https://www.youtube.com/watch?v=km0-E99w8f0"
+          href="https://www.youtube.com/watch?v=u7adbYXou8Q"
           target="_blank"
           title="YouTube"
           @click="openViewer"
