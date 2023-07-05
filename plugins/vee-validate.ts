@@ -17,6 +17,17 @@ export default defineNuxtPlugin((nuxtApp) => {
   })
 
   // カスタムルール
+  defineRule('file', (value: FileList) => {
+    if (!value || value.length === 0) return false
+    return true
+  })
+
+  defineRule('halfwidth', (value: string) => {
+    if (!value) return true
+    const reg = new RegExp(/^[a-zA-Z0-9!-~]+$/)
+    return reg.test(value)
+  })
+
   defineRule('minusNumber', (value: string) => {
     if (!value) return true
     if (value === '-') return true
@@ -35,6 +46,8 @@ export default defineNuxtPlugin((nuxtApp) => {
         required: '{field}を入力してください',
         email: '{field}の形式が正しくありません',
         numeric: '{field}は半角数字で入力してください',
+        file: '{field}を指定してください',
+        halfwidth: '{field}は半角で入力してください',
         minusNumber: '{field}は半角数字で入力してください',
       },
     }),

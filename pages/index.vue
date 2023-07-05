@@ -467,16 +467,16 @@ const scrollModal = ref<InstanceType<typeof Modal>>()
         <p>v-model: {{ state.modeltest1 }}</p>
         <div class="grid lg:grid-cols-3 gap-2 mb-2">
           <Textfield
-            name="basic"
+            name="textfield"
             label="Textfield"
+            rule="halfwidth"
             help="フォームの補足説明がここに入ります。"
-            :required="true"
             v-model="state.modeltest1"
           />
           <Textfield
             name="feedback"
             label="Feedback"
-            :feedback="{ color: 'success', icon: 'check_circle', message: 'このIDは使用可能です' }"
+            :feedback="{ color: 'success', message: 'このIDは使用可能です' }"
             :required="true"
             v-model="state.modeltest1"
           />

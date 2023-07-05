@@ -20,7 +20,7 @@ const props = defineProps<{
   readonly?: boolean
   accept?: string
   help?: string
-  feedback?: { color: string; icon?: string; message?: string }
+  feedback?: { color: string; message?: string }
   starticon?: string
   endicon?: string
 }>()
@@ -129,12 +129,14 @@ watchEffect(() => {
       required: props.required,
       email: props.rule === 'email',
       numeric: props.rule === 'numeric',
+      file: props.type === 'file',
+      halfwidth: props.rule === 'halfwidth',
       minusNumber: props.rule === 'minusNumber',
     }"
-    v-slot="{ field, errors, meta: { valid, validated } }"
+    v-slot="{ field, errors, meta: { valid } }"
     v-model="state.value"
   >
-    <div :class="[boxClass, { validated: !valid && validated }]">
+    <div :class="[boxClass, { invalid: !valid && errors[0] }]">
       <select
         v-if="props.type === 'select'"
         :class="inputClass"
@@ -198,8 +200,17 @@ watchEffect(() => {
         @keydown.enter="onEnter"
       />
 
-      <label v-if="props.label || props.maxlength" :class="labelClass">
-        {{ !valid && validated ? errors[0] : props.label }}
+      <label v-if="props.label || props.maxlength || props.feedback || !valid" :class="labelClass">
+        <template v-if="!valid && errors[0]">{{ errors[0] }}</template>
+
+        <template v-else-if="props.feedback">
+          {{ props.feedback.message }}
+        </template>
+
+        <template v-else>
+          {{ props.label }}
+        </template>
+
         {{ props.required ? '*' : '' }}
         <span v-if="props.maxlength" class="length">({{ state.length }}/{{ props.maxlength }})</span>
       </label>
@@ -221,11 +232,6 @@ watchEffect(() => {
       >
         <Icon :value="state.passType === 'password' ? 'visibility_off' : 'visibility'" />
       </button>
-
-      <span v-if="props.feedback?.message" :class="['textfield-feedback', state.size]">
-        <Icon v-if="props.feedback.icon" :value="props.feedback.icon" />
-        {{ props.feedback.message }}
-      </span>
 
       <small v-if="props.help" class="textfield-help">{{ props.help }}</small>
     </div>
@@ -322,36 +328,6 @@ $feedbackColor: v-bind('feedbackColor');
       color: $feedbackColor;
     }
 
-    .textfield-feedback {
-      user-select: none;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.25rem;
-      background-color: $feedbackColor;
-      position: absolute;
-      z-index: 10;
-      bottom: calc(1.25rem / -2 + $border-width / 2);
-      left: 0.25rem;
-      max-width: 80%;
-      min-height: 1.25rem;
-      margin: 0 0.5rem;
-      padding: 0 0.25rem;
-      @include rounded(2px);
-
-      color: #ffffff;
-      font-size: 0.875rem;
-      line-height: 1.3;
-
-      ::v-deep(.font-icon) {
-        transform: none;
-        font-size: 16px;
-      }
-
-      &.sm {
-        font-size: 0.75rem;
-      }
-    }
-
     .textfield-input {
       border-color: $feedbackColor;
 
@@ -363,7 +339,7 @@ $feedbackColor: v-bind('feedbackColor');
     }
   }
 
-  &.validated {
+  &.invalid {
     label {
       @include focusLabelStyle;
       color: $color-danger;
@@ -581,7 +557,7 @@ span.textfield-input {
   background-color: transparent;
 
   + .textfield-label {
-    background-color: transparent;
+    @include rounded($input-border-radius);
   }
 }
 
