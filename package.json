@@ -8,14 +8,14 @@
     "openapi-generate": "docker run --rm -v ${PWD}/openapi:/out openapitools/openapi-generator-cli:v6.0.1 generate --generator-name typescript-fetch --input-spec https://raw.githubusercontent.com/openapitools/openapi-generator/master/modules/openapi-generator/src/test/resources/3_0/petstore.yaml --output /out --api-package api --model-package model --generate-alias-as-model --additional-properties supportsES6=true --additional-properties withInterfaces=true --additional-properties withSeparateModelsAndApi=true"
   },
   "dependencies": {
-    "@types/node": "^20.3.3",
+    "@types/node": "^20.4.1",
     "@vee-validate/i18n": "^4.10.5",
     "@vee-validate/rules": "^4.10.5",
     "autoprefixer": "^10.4.14",
-    "nuxt": "^3.6.1",
+    "nuxt": "^3.6.2",
     "polished": "^4.2.2",
-    "postcss": "^8.4.24",
-    "prettier": "^2.8.8",
+    "postcss": "^8.4.25",
+    "prettier": "^3.0.0",
     "sass": "^1.63.6",
     "swiper": "^10.0.3",
     "tailwindcss": "^3.3.2",

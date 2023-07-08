@@ -226,7 +226,7 @@ $lightVariant: v-bind('lightVariant');
       text-align: center;
       color: $color-body;
       background-color: transparent;
-      border: $border-width solid $color-body;
+      border: $border-width solid $color-border;
 
       @include rounded($input-border-radius);
 
