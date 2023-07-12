@@ -290,11 +290,12 @@ $bgColor: v-bind('bgColor');
     }
 
     &.default {
-      background-color: #a0a0a0;
-      color: white;
+      background-color: $color-muted-bg;
+      color: $color-body;
 
       @include darkmode {
-        background-color: #404040;
+        background-color: $dark-color-muted-bg;
+        color: $dark-color-body;
       }
     }
   }

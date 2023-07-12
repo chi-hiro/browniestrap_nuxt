@@ -36,7 +36,7 @@ $color-muted: rgba(0, 0, 0, 0.4);
 $color-border: rgba(0, 0, 0, 0.1);
 $color-input-border: rgba(0, 0, 0, 0.2);
 $color-body-bg: #ffffff;
-$color-muted-bg: rgba(0, 0, 0, 0.03);
+$color-muted-bg: rgba(0, 0, 0, 0.04);
 $color-header-bg: #ffffff;
 $color-overlay-bg: rgba(0, 0, 0, 0.3);
 
@@ -47,7 +47,7 @@ $dark-color-muted: rgba(255, 255, 255, 0.4);
 $dark-color-border: rgba(255, 255, 255, 0.1);
 $dark-color-input-border: rgba(255, 255, 255, 0.2);
 $dark-color-body-bg: #202020;
-$dark-color-muted-bg: rgba(255, 255, 255, 0.03);
+$dark-color-muted-bg: rgba(255, 255, 255, 0.04);
 $dark-color-header-bg: #404040;
 $dark-color-overlay-bg: rgba(0, 0, 0, 0.3);
 
@@ -63,7 +63,15 @@ $shadow-dark-reverse: 0 -4px 20px rgba(0, 0, 0, 0.1);
 // Family
 $font-jp-sans: -apple-system, BlinkMacSystemFont, Roboto, 'Segoe UI', 'Hiragino Sans', 'Yu Gothic Medium', 'Yu Gothic',
   Meiryo, sans-serif;
-$font-en-sans: 'Urbanist', -apple-system, BlinkMacSystemFont, Roboto, 'Segoe UI', Helvetica, Arial, sans-serif;
+$font-en-sans:
+  'Urbanist',
+  -apple-system,
+  BlinkMacSystemFont,
+  Roboto,
+  'Segoe UI',
+  Helvetica,
+  Arial,
+  sans-serif;
 $font-cn-sans: 'Microsoft YaHei', 'PingFang SC', sans-serif;
 $font-tw-sans: 'Microsoft JhengHei', 'PingFang TC', sans-serif;
 $font-jp-serif: 'Hiragino Mincho ProN', 'Hiragino Mincho Pro', '游明朝', YuMincho, serif;

@@ -6,9 +6,9 @@ export const elementInScreen = (target: HTMLElement) => {
 }
 
 export const elementShowPos = (target: HTMLElement) => {
-  return window.pageYOffset + target.getBoundingClientRect().top - window.innerHeight
+  return window.scrollY + target.getBoundingClientRect().top - window.innerHeight
 }
 
 export const elementHidePos = (target: HTMLElement) => {
-  return window.pageYOffset + target.getBoundingClientRect().top + target.offsetHeight
+  return window.scrollY + target.getBoundingClientRect().top + target.offsetHeight
 }
